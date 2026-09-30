@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750"><rect width="1200" height="750" fill="#0f1412"/>
+<g font-family="Consolas,monospace" fill="#e6efe9"><text x="60" y="70" font-size="26" font-weight="700">Every</text>
+<g font-size="15" opacity=".7"><text x="700" y="68">Product</text><text x="790" y="68">Pricing</text><text x="880" y="68">About</text></g>
+<rect x="1040" y="42" width="100" height="36" fill="#e6efe9"/><text x="1062" y="66" font-size="14" fill="#0f1412">Start</text>
+<text x="60" y="300" font-size="76" font-weight="500">Every transaction,</text><text x="60" y="390" font-size="76" font-weight="500" fill="#5be3a1">verified.</text>
+<text x="60" y="450" font-size="24" opacity=".75">Data platform for modern finance teams.</text>
+<rect x="60" y="500" width="190" height="52" fill="#e6efe9"/><text x="92" y="533" font-size="18" fill="#0f1412">Get started</text>
+<rect x="270" y="500" width="170" height="52" fill="none" stroke="#e6efe9"/><text x="305" y="533" font-size="18">Learn more</text></g>
+<rect x="680" y="460" width="44" height="60" fill="#e6efe9" opacity="0.35"/><rect x="750" y="423" width="44" height="97" fill="#5be3a1" opacity="1"/><rect x="820" y="386" width="44" height="134" fill="#e6efe9" opacity="0.35"/><rect x="890" y="349" width="44" height="171" fill="#5be3a1" opacity="1"/><rect x="960" y="312" width="44" height="208" fill="#e6efe9" opacity="0.35"/><rect x="1030" y="275" width="44" height="245" fill="#5be3a1" opacity="1"/><rect x="1100" y="438" width="44" height="82" fill="#e6efe9" opacity="0.35"/>
+<text x="1140" y="725" font-family="monospace" font-size="13" text-anchor="end" fill="#e6efe9" opacity=".45">PLACEHOLDER</text></svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750"><rect width="1200" height="750" fill="#fff3d6"/>
+<g font-family="Trebuchet MS,sans-serif" fill="#2b1d3a"><text x="60" y="70" font-size="26" font-weight="700">Fresh</text>
+<g font-size="15" opacity=".7"><text x="700" y="68">Product</text><text x="790" y="68">Pricing</text><text x="880" y="68">About</text></g>
+<rect x="1040" y="42" width="100" height="36" fill="#2b1d3a"/><text x="1062" y="66" font-size="14" fill="#fff3d6">Start</text>
+<text x="60" y="300" font-size="76" font-weight="500">Fresh from the</text><text x="60" y="390" font-size="76" font-weight="500" fill="#ff6a3d">corner stall.</text>
+<text x="60" y="450" font-size="24" opacity=".75">A neighborhood market, illustrated.</text>
+<rect x="60" y="500" width="190" height="52" fill="#2b1d3a"/><text x="92" y="533" font-size="18" fill="#fff3d6">Get started</text>
+<rect x="270" y="500" width="170" height="52" fill="none" stroke="#2b1d3a"/><text x="305" y="533" font-size="18">Learn more</text></g>
+<circle cx="820" cy="360" r="130" fill="#ff6a3d"/><circle cx="980" cy="430" r="90" fill="#7ad0b4"/><circle cx="900" cy="250" r="60" fill="#ffc83d"/><rect x="760" y="470" width="280" height="40" rx="20" fill="#2b1d3a" opacity=".85"/>
+<text x="1140" y="725" font-family="monospace" font-size="13" text-anchor="end" fill="#2b1d3a" opacity=".45">PLACEHOLDER</text></svg>

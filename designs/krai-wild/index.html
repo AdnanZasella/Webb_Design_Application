@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Krai Wild</title>
+<link rel="stylesheet" href="../_shared/fonts.css">
+<style>
+:root{--navy:#0d0b4a;--navy-2:#14105f;--panel:#33279e;--panel-2:#3d31b8;--ink:#f4f1ff;--soft:#e0dcfb;--red:#b3261e;--orange:#f59a2e;--display:'Archivo Black','Arial Black',sans-serif;--sans:'Manrope',system-ui,sans-serif;--wrap:min(1080px,calc(100% - 56px));--ease:cubic-bezier(.16,1,.3,1)}
+*{box-sizing:border-box;margin:0}
+body{background:var(--navy);color:var(--ink);font:400 .9375rem/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--orange);color:#1b0f00}
+:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+.wrap{width:var(--wrap);margin:0 auto;position:relative}
+.nav{display:flex;align-items:center;justify-content:space-between;width:var(--wrap);margin:0 auto;padding:30px 0;font:500 .875rem var(--sans);position:relative;z-index:3}
+.logo{font:600 1.375rem var(--sans);letter-spacing:.02em}
+.nav ul{list-style:none;padding:0;display:flex;gap:clamp(24px,5vw,64px);margin-left:auto;margin-right:clamp(24px,4vw,50px);font-size:.8125rem}
+.nav ul a{opacity:.85;transition:opacity .3s}
+.nav ul a:hover{opacity:1;text-decoration:underline;text-underline-offset:5px}
+.btn-o{border:1px solid var(--ink);padding:8px 26px;font-size:.8125rem;transition:background-color .3s,color .3s}
+.btn-o:hover{background:var(--ink);color:var(--navy)}
+
+.hero{position:relative;min-height:min(92vw,800px);overflow:hidden;isolation:isolate;background:#2a1c6b}
+.hero__art{position:absolute;inset:0;z-index:-1;width:100%;height:100%}
+.hero__fade{position:absolute;left:0;right:0;bottom:0;height:22%;background:linear-gradient(180deg,transparent,var(--navy));z-index:0}
+.hero .wrap{padding-top:clamp(120px,18vw,210px);z-index:2}
+h1{font:400 clamp(5rem,16vw,11rem)/.85 var(--display);letter-spacing:.01em}
+h1 sup{font-size:.35em;vertical-align:top;position:relative;top:.1em}
+.hero p{max-width:26ch;font-size:.875rem;margin:18px 0 22px}
+.btn-w{display:inline-flex;align-items:center;gap:40px;background:#fff;color:#16124f;font:600 .8125rem var(--sans);padding:10px 16px;transition:transform .3s var(--ease)}
+.btn-w:hover{transform:translateX(4px)}
+.btn-w::after{content:"";border-left:7px solid #16124f;border-top:4px solid transparent;border-bottom:4px solid transparent}
+
+.sec{padding:clamp(50px,7vw,90px) 0 clamp(50px,7vw,80px)}
+.sec--deep{background:#0a0840}
+.sec__head{display:flex;justify-content:space-between;gap:30px;align-items:flex-start}
+.sec h2{font:500 clamp(1.75rem,3.6vw,2.5rem)/1.05 var(--sans);letter-spacing:.01em}
+.idx{flex:0 0 min(400px,48%);border-top:2px solid var(--ink);padding-top:14px;text-align:right;font-size:.8125rem;position:relative}
+.idx::after{content:"";position:absolute;left:0;right:0;bottom:-18px;height:1px;background:rgba(244,241,255,.25)}
+.idx b{color:#ff9a8d;font-weight:500}
+.lede{max-width:66ch;margin:34px 0 0;font-size:.8125rem;line-height:1.6;color:var(--soft)}
+.lede--thin{font-size:.75rem}
+
+.cards{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:26px;align-items:start;margin:50px 0 0}
+.tcard{background:var(--panel-2);padding:22px 22px 0;text-align:center;border-bottom:5px solid var(--red);position:relative;transition:transform .5s var(--ease)}
+.tcard:nth-child(2){margin-top:38px;background:var(--panel);border-color:#6e8ff0}
+.tcard:nth-child(3){margin-top:38px;background:var(--panel);border-color:var(--orange)}
+.tcard:hover{transform:translateY(-8px)}
+.tcard--lead{box-shadow:0 18px 40px rgba(0,0,0,.4)}
+.tcard .no{position:absolute;left:14px;top:12px;font:400 1.375rem var(--display)}
+.tcard .no small{font-size:.75rem;color:#ffa093}
+.tcard svg.art{width:min(220px,100%);aspect-ratio:1;display:block;margin:10px auto 6px}
+.tcard h3{font:500 1.375rem var(--sans)}
+.tcard p{font-size:.75rem;line-height:1.5;color:var(--soft);max-width:26ch;margin:8px auto 18px}
+.tcard .btn-r{display:inline-block;background:var(--red);font:600 .75rem var(--sans);padding:7px 34px;margin-bottom:30px;transition:background-color .3s}
+.tcard .btn-r:hover{background:#c42e25}
+.arrow{position:absolute;top:46%;width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent}
+.arrow--l{left:-28px;border-right:7px solid var(--ink)}
+.arrow--r{right:-28px;border-left:7px solid var(--ink)}
+
+.gal{position:relative;margin-top:60px;height:clamp(280px,40vw,360px)}
+.gal__bg{position:absolute;left:clamp(0px,2vw,30px);right:-28px;top:0;bottom:-28px;background:var(--panel)}
+.gal__img{position:absolute;left:clamp(36px,5vw,80px);top:clamp(24px,3vw,36px);bottom:0;width:min(45%,400px);overflow:hidden;border-left:5px solid var(--red)}
+.gal__img svg{width:100%;height:100%;display:block}
+.gal__txt{position:absolute;left:calc(clamp(36px,5vw,80px) + min(45%,400px) + 14px);right:-28px;top:clamp(24px,3vw,36px);bottom:-28px;background:var(--panel-2);padding:22px clamp(18px,3vw,36px)}
+.gal__txt h3{font:500 1.375rem var(--sans);display:flex;justify-content:space-between;margin-bottom:18px}
+.gal__txt h3 span{font-size:.8125rem;font-weight:400}
+.gal__txt dl{font-size:.75rem;line-height:1.6;color:var(--soft)}
+.gal__txt dt{color:#ffa093;margin-top:10px}
+.gal__txt dd{margin:0}
+.gal__txt .btn-r{display:inline-block;background:var(--red);font:600 .75rem var(--sans);padding:8px 30px;margin-top:16px;color:var(--ink)}
+footer{display:flex;justify-content:space-between;align-items:center;width:var(--wrap);margin:0 auto;padding:clamp(60px,8vw,110px) 0 34px;font-size:.75rem}
+footer .soc{display:flex;gap:16px}
+footer .soc i{width:12px;height:12px;border:1.5px solid var(--ink);border-radius:3px;display:block}
+.mail{border-bottom:1px solid var(--ink);padding:6px 70px 6px 0;color:var(--soft)}
+
+@media (max-width:820px){.nav ul{display:none}.nav .btn-o{margin-left:auto}.cards{grid-template-columns:1fr}.tcard:nth-child(n){margin-top:0}.sec__head{flex-direction:column}.idx{flex:auto;width:100%}.gal{height:auto}.gal__bg{display:none}.gal__img,.gal__txt{position:static;width:100%;margin-bottom:16px}.gal__img{height:260px}.arrow{display:none}footer{flex-wrap:wrap;gap:18px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <svg class="hero__art" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6b6fb5"/><stop offset=".5" stop-color="#4a3c9a"/><stop offset="1" stop-color="#2a1c6b"/></linearGradient>
+      <linearGradient id="peak" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffb24a"/><stop offset=".55" stop-color="#ef6a2c"/><stop offset="1" stop-color="#8c2f5a"/></linearGradient>
+      <linearGradient id="lake" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff9a3a"/><stop offset=".5" stop-color="#b24a6a"/><stop offset="1" stop-color="#3a2a8a"/></linearGradient>
+    </defs>
+    <rect width="1200" height="800" fill="url(#sky)"/>
+    <g fill="#5d5bb0" opacity=".75"><ellipse cx="180" cy="90" rx="220" ry="60"/><ellipse cx="560" cy="60" rx="260" ry="50"/><ellipse cx="980" cy="110" rx="260" ry="70"/><ellipse cx="1100" cy="260" rx="200" ry="50"/></g>
+    <path d="M540 520L720 210 800 300 900 120 1010 330 1100 250 1200 420V560H540Z" fill="url(#peak)"/>
+    <path d="M830 330L900 120 960 250Z M700 260L720 210 760 300Z" fill="#ffd27a" opacity=".75"/>
+    <path d="M140 560L300 300 380 410 460 330 600 560Z" fill="#7f4d9c"/>
+    <path d="M0 560L150 420 260 500 420 440 560 560Z" fill="#3e2f86"/>
+    <path d="M0 540H1200V600H0Z" fill="#1f1760"/>
+    <g fill="#1a1452"><path d="M0 560l10-40 10 40zM30 560l12-50 12 50zM70 560l10-40 10 40zM500 560l10-36 10 36zM540 560l12-46 12 46zM960 560l10-40 10 40z"/></g>
+    <rect y="590" width="1200" height="210" fill="url(#lake)"/>
+    <path d="M0 640Q300 620 620 660T1200 640V800H0Z" fill="#3e2f86" opacity=".5"/>
+    <g><path d="M210 720q90-50 200 0l30 40H190Z" fill="#3b2d8f"/><path d="M0 800V700q160-60 260-10l60 110Z" fill="#33277d"/><path d="M700 800L760 700q160-40 300 0l140 100Z" fill="#33277d"/></g>
+    <!-- big bear -->
+    <g fill="#5a1f22"><ellipse cx="900" cy="640" rx="150" ry="90"/><path d="M780 640q-10-120 70-140 70-10 100 40l60 110z"/><circle cx="830" cy="570" r="48"/><circle cx="800" cy="535" r="14"/><circle cx="858" cy="532" r="14"/></g>
+    <g fill="#ff9a3a" opacity=".55"><ellipse cx="960" cy="560" rx="120" ry="30"/></g>
+    <circle cx="815" cy="565" r="5" fill="#fff" opacity=".8"/><circle cx="842" cy="565" r="5" fill="#fff" opacity=".8"/>
+    <!-- cub -->
+    <g fill="#5a1f22"><ellipse cx="560" cy="700" rx="90" ry="44"/><circle cx="500" cy="670" r="26"/><circle cx="488" cy="650" r="8"/><circle cx="512" cy="648" r="8"/></g>
+  </svg>
+  <div class="hero__fade"></div>
+  <nav class="nav" aria-label="Main"><a class="logo" href="#">Gravity</a><ul><li><a href="#">Location</a></li><li><a href="#">Itinerary</a></li><li><a href="#">Schedule</a></li><li><a href="#">Availability</a></li></ul><a class="btn-o" href="#">Login</a></nav>
+  <div class="wrap">
+    <h1>KRAI<sup>*</sup></h1>
+    <p>Join us for an epic week of hiking, team-bonding and digital detox. This month, one-time only, in the far north.</p>
+    <a class="btn-w" href="#adventure">Adventure</a>
+  </div>
+</header>
+
+<section class="sec" id="adventure">
+  <div class="wrap">
+    <div class="sec__head"><h2>Choose your<br>Adventure</h2><div class="idx"><b>01</b> / Range of Activities</div></div>
+    <p class="lede">Placeholder copy introduces the activities in a sentence or two. It explains what the visitor can choose and how a week on the trail is organised, without promising anything real.</p>
+    <div class="cards">
+      <article class="tcard tcard--lead"><span class="no">01<small>/03</small></span><svg class="art" viewBox="0 0 220 220" aria-hidden="true"><defs><clipPath id="d1"><path d="M110 8C170 8 210 60 210 120c0 50-36 92-100 92S10 170 10 120C10 60 50 8 110 8Z"/></clipPath><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff9a3a"/><stop offset="1" stop-color="#5a2a8a"/></linearGradient></defs><g clip-path="url(#d1)"><rect width="220" height="220" fill="url(#g1)"/><path d="M40 160L100 50l30 50 30-40 40 100Z" fill="#ff6a2c"/><path d="M60 170h100l-50-80Z" fill="#c4282d"/><path d="M110 98l-18 60h36Z" fill="#ffb24a"/><ellipse cx="110" cy="176" rx="18" ry="10" fill="#ffd27a"/><rect y="180" width="220" height="40" fill="#2a1c6b"/></g></svg><h3>Camping</h3><p>Placeholder text about this activity, kept short and calm.</p><a class="btn-r" href="#">Explore</a></article>
+      <article class="tcard"><span class="no">02<small>/03</small></span><svg class="art" viewBox="0 0 220 220" aria-hidden="true"><defs><clipPath id="d2"><path d="M110 8C170 8 210 60 210 120c0 50-36 92-100 92S10 170 10 120C10 60 50 8 110 8Z"/></clipPath><linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffb24a"/><stop offset="1" stop-color="#7a3a9a"/></linearGradient></defs><g clip-path="url(#d2)"><rect width="220" height="220" fill="url(#g2)"/><path d="M30 190L70 60l40 40 50-70 40 160Z" fill="#ef6a2c"/><rect x="40" y="110" width="30" height="8" rx="4" fill="#c4282d" transform="rotate(-20 55 114)"/><g transform="rotate(-18 110 150)"><rect x="70" y="135" width="36" height="46" rx="12" fill="#d6382f"/><rect x="114" y="135" width="36" height="46" rx="12" fill="#d6382f"/><circle cx="88" cy="181" r="12" fill="#6a2a8a"/><circle cx="132" cy="181" r="12" fill="#6a2a8a"/></g></g></svg><h3>Sightseeing</h3><p>Placeholder text about this activity, kept short and calm.</p><a class="btn-r" href="#">Explore</a></article>
+      <article class="tcard"><span class="no">03<small>/03</small></span><svg class="art" viewBox="0 0 220 220" aria-hidden="true"><defs><clipPath id="d3"><path d="M110 8C170 8 210 60 210 120c0 50-36 92-100 92S10 170 10 120C10 60 50 8 110 8Z"/></clipPath><linearGradient id="g3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffc45a"/><stop offset="1" stop-color="#7a3a9a"/></linearGradient></defs><g clip-path="url(#d3)"><rect width="220" height="220" fill="url(#g3)"/><path d="M50 200L110 40l70 160Z" fill="#ef6a2c"/><path d="M110 40l30 70-30 20Z" fill="#ffd27a"/><circle cx="92" cy="110" r="12" fill="#6a2a4a"/><rect x="76" y="124" width="34" height="50" rx="10" fill="#c4282d"/><rect x="82" y="172" width="8" height="30" fill="#2a1c6b"/><rect x="98" y="172" width="8" height="30" fill="#2a1c6b"/></g></svg><h3>Hiking</h3><p>Placeholder text about this activity, kept short and calm.</p><a class="btn-r" href="#">Explore</a></article>
+      <span class="arrow arrow--l" aria-hidden="true"></span><span class="arrow arrow--r" aria-hidden="true"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--deep">
+  <div class="wrap">
+    <div class="sec__head"><h2>Browse our<br>Gallery</h2><div class="idx"><b>02</b> / Browse our Gallery</div></div>
+    <p class="lede lede--thin">Placeholder copy introduces the gallery in a sentence or two, then hands over to the photographs.</p>
+    <div class="gal">
+      <div class="gal__bg"></div>
+      <div class="gal__img"><svg viewBox="0 0 400 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="gg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a7ad0"/><stop offset=".6" stop-color="#e88a4a"/><stop offset="1" stop-color="#7a2a6a"/></linearGradient></defs><rect width="400" height="360" fill="url(#gg)"/><path d="M0 300L80 120l60 90 70-130 80 110 110-40V360H0Z" fill="#c25a2a"/><g fill="#ffb24a"><path d="M20 300l8-40 8 40zM60 300l10-50 10 50zM110 300l8-36 8 36z"/></g><rect x="140" y="170" width="44" height="60" rx="14" fill="#8a2a2a"/><circle cx="162" cy="150" r="16" fill="#5a2a2a"/><path d="M140 230h60l20 40h-90Z" fill="#2e7fd6"/></svg></div>
+      <div class="gal__txt"><h3>Northern Solitude <span>2008</span></h3><dl><dt>Photographer:</dt><dd>Placeholder Name</dd><dt>Year:</dt><dd>2008</dd><dt>Narrative:</dt><dd>A few lines of placeholder text that tell the story behind the photograph.</dd></dl><a class="btn-r" href="#">Expand photo</a></div>
+    </div>
+  </div>
+  <footer><span>&copy; Studio demo 2026</span><span class="soc" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="mail">Join our mailing list</span></footer>
+</section>
+</body>
+</html>

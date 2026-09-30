@@ -48,6 +48,60 @@
         ],
         "createdAt": "2026-09-30T18:43:56.178Z",
         "reason": "Violet palette is the pinned look of the user's reference screenshot"
+      },
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "designs/krai-wild/index.html"
+        ],
+        "createdAt": "2026-09-30T19:27:57.780Z",
+        "reason": "Colored card bottom bars and image edge are the pinned look of the reference"
+      },
+      {
+        "rule": "marquee",
+        "value": "*",
+        "files": [
+          "designs/glow-agency/index.html"
+        ],
+        "createdAt": "2026-09-30T19:29:41.558Z",
+        "reason": "Scrolling service ticker is the pinned signature of the reference; disabled for reduced motion"
+      },
+      {
+        "rule": "clipped-overflow-container",
+        "value": "*",
+        "files": [
+          "designs/teal-summit/index.html"
+        ],
+        "createdAt": "2026-09-30T19:31:09.300Z",
+        "reason": "Decorative sky and forest layers are cropped by the hero on purpose"
+      },
+      {
+        "rule": "overused-font",
+        "value": "*",
+        "files": [
+          "designs/teal-summit/index.html"
+        ],
+        "createdAt": "2026-09-30T19:31:09.609Z",
+        "reason": "Montserrat matches the pinned reference look"
+      },
+      {
+        "rule": "overused-font",
+        "value": "*",
+        "files": [
+          "designs/temple-frame/index.html"
+        ],
+        "createdAt": "2026-09-30T19:31:09.931Z",
+        "reason": "Montserrat matches the pinned reference look"
+      },
+      {
+        "rule": "flat-type-hierarchy",
+        "value": "*",
+        "files": [
+          "designs/fernwood-escape/index.html"
+        ],
+        "createdAt": "2026-09-30T19:33:12.884Z",
+        "reason": "Headline uses clamp(); visually checked at 1200px, h1 is 54px against 15px body"
       }
     ]
   }

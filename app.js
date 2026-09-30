@@ -120,6 +120,9 @@
     L.push('## Images (view these first)');
     d.images.forEach((im) => L.push(`- ${imgPath(im.file)}${im.caption ? `  (${im.caption})` : ''}`));
     L.push('');
+    if (d.page) {
+      L.push('## Live mock page', `- ${imgPath(d.page)}  (an original HTML page in this style with placeholder content; open it in a browser or read its source for exact CSS values)`, '');
+    }
     L.push('## Feeling', `${d.summary}`, `Mood: ${(d.tags || []).join(', ')}.`, `Style family: ${d.category} (${d.descriptor}).`, '');
     L.push('## Palette');
     (d.colors || []).forEach((c) => L.push(`- ${c.role}: ${c.hex}`));
@@ -139,6 +142,19 @@
   }
 
   /* ---------- detail ---------- */
+  function setLive(on) {
+    const d = state.current;
+    const frame = $('d-frame');
+    if (on && frame.getAttribute('src') !== d.page) frame.src = d.page;
+    if (!on) frame.removeAttribute('src');
+    frame.hidden = !on;
+    $('d-image').hidden = on;
+    $('d-thumbs').hidden = on;
+    $('d-caption').hidden = on;
+    $('live').setAttribute('aria-pressed', String(on));
+    $('live').textContent = on ? 'Screenshots' : 'Live page';
+  }
+
   function setImage(i) {
     const d = state.current;
     state.imageIndex = i;
@@ -202,6 +218,11 @@
       });
     }
     setImage(0);
+    $('live').hidden = !d.page;
+    const pl = $('page-link');
+    pl.hidden = !d.page;
+    if (d.page) pl.href = d.page;
+    setLive(false);
     renderSpec(d);
     $('d-brief').textContent = buildBrief(d);
     syncFav();
@@ -341,6 +362,7 @@
       const names = d.images.map((im) => im.file.split('/').pop());
       let brief = buildBrief(d);
       d.images.forEach((im, i) => { brief = brief.replace(im.file, `./images/${names[i]}`); });
+      if (d.page) brief = brief.replace(/## Live mock page[\s\S]*?\n\n/, ''); // the page itself is not in the zip
       rootDir = keep;
       const files = [{ name: 'brief.md', data: enc.encode(brief) }];
       for (let i = 0; i < d.images.length; i++) {
@@ -370,6 +392,7 @@
     toast((await copyText(buildBrief(state.current))) ? 'Brief copied. Paste it, and attach the images it lists.' : 'Copy failed. Select the brief text and copy it by hand.');
   });
   $('copy-image').addEventListener('click', copyImage);
+  $('live').addEventListener('click', () => setLive($('d-frame').hidden));
   $('zip').addEventListener('click', downloadZip);
   $('fav').addEventListener('click', () => {
     const id = state.current.id;

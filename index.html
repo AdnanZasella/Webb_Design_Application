@@ -37,6 +37,7 @@
     <article class="detail">
       <div class="detail__stage">
         <img id="d-image" alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+        <iframe id="d-frame" title="Live mock page" hidden loading="lazy"></iframe>
         <p class="detail__caption" id="d-caption"></p>
         <div class="detail__thumbs" id="d-thumbs"></div>
       </div>
@@ -59,6 +60,8 @@
           <button type="button" class="btn btn--solid" id="copy-brief">Copy brief</button>
           <button type="button" class="btn btn--solid" id="copy-image">Copy image</button>
           <button type="button" class="btn btn--solid" id="zip">Download zip</button>
+          <button type="button" class="btn" id="live" aria-pressed="false" hidden>Live page</button>
+          <a class="btn" id="page-link" target="_blank" rel="noopener" hidden>Open in tab</a>
           <button type="button" class="btn" id="fav" aria-pressed="false">Save</button>
           <a class="btn" id="source" target="_blank" rel="noopener" hidden>Open source</a>
           <span class="actions__spacer"></span>

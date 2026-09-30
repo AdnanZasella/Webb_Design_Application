@@ -155,3 +155,6 @@ dialog[open]::backdrop { animation: fade .3s var(--ease); }
   .search, .search input { width: 100%; }
   .chip { padding: 10px 11px; }
 }
+
+/* Live mock page inside the detail view */
+#d-frame { display: block; width: 100%; height: 62dvh; border: 1px solid var(--hairline); background: #fff; }

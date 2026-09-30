@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fernwood Escape</title>
+<link rel="stylesheet" href="../_shared/fonts.css">
+<style>
+@font-face{font-family:'Newsreader';font-weight:400 600;font-display:swap;src:url('../../fonts/Newsreader-normal-400-600.woff2') format('woff2')}
+:root{--bg:#f8f8f3;--card:#fff;--ink:#14291f;--soft:#56675e;--green:#1e4a36;--green-2:#2a5e45;--orange:#f59a30;--orange-ink:#3a2002;--line:#e3e6dc;--sand:#eeeee4;--serif:'Newsreader',Georgia,serif;--sans:'Manrope',system-ui,sans-serif;--wrap:min(1120px,calc(100% - 48px));--ease:cubic-bezier(.16,1,.3,1)}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:400 .9375rem/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--orange);color:var(--orange-ink)}
+:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+.wrap{width:var(--wrap);margin:0 auto;position:relative}
+
+.top{width:var(--wrap);margin:0 auto;padding:16px 0;display:flex;align-items:center;justify-content:space-between;position:relative;z-index:3}
+.logo{display:flex;align-items:center;gap:10px;font:700 1.375rem var(--sans)}
+.logo i{width:38px;height:38px;border-radius:50%;background:var(--orange);position:relative;overflow:hidden;display:block}
+.logo i::after{content:"";position:absolute;left:4px;right:4px;bottom:0;height:16px;background:var(--green);clip-path:polygon(0 100%,35% 10%,60% 60%,80% 30%,100% 100%)}
+.logo small{display:block;font:400 .75rem var(--sans);color:var(--soft)}
+.top ul{list-style:none;padding:0;display:flex;gap:clamp(18px,3vw,34px);font:600 .8125rem var(--sans)}
+.top ul a{padding:6px 0;border-bottom:2px solid transparent;transition:border-color .3s var(--ease)}
+.top ul a:hover,.top ul a[aria-current]{border-color:var(--orange);color:#c4700a}
+.top ul a[aria-current]{color:#9a5706}
+.icons{display:flex;gap:10px}
+.icons i{width:38px;height:38px;border-radius:50%;background:var(--card);border:1px solid var(--line);display:block}
+
+.hero{position:relative;height:clamp(520px,62vw,640px);margin-top:-70px;isolation:isolate}
+.hero__art{position:absolute;inset:0;z-index:-1;width:100%;height:100%}
+.hero__copy{position:absolute;left:max(24px,calc((100% - 1120px)/2));top:150px;max-width:480px}
+.hero__copy h1{font:600 clamp(2.25rem,5vw,3.375rem)/1.08 var(--serif);letter-spacing:-.01em}
+.hero__copy h1 em{font-style:normal;color:var(--green);text-decoration:underline;text-decoration-color:var(--orange);text-decoration-thickness:3px;text-underline-offset:6px}
+.hero__copy p{margin:18px 0 24px;color:var(--soft);max-width:30ch}
+.btn-o{display:inline-flex;align-items:center;gap:14px;background:var(--orange);color:var(--orange-ink);font:700 .875rem var(--sans);padding:13px 26px;border-radius:10px;transition:transform .3s var(--ease),background-color .3s}
+.btn-o:hover{transform:translateY(-2px);background:#ffab4d}
+.btn-o::after{content:"\2192"}
+
+.search{width:var(--wrap);margin:-44px auto 0;position:relative;z-index:2;background:var(--card);border-radius:16px;box-shadow:0 14px 40px rgba(20,41,31,.14);padding:18px 20px;display:grid;grid-template-columns:repeat(4,1fr) auto;gap:10px;align-items:center}
+.search label{display:block;padding:0 14px;border-right:1px solid var(--line);font:700 .75rem var(--sans)}
+.search label span{display:block;font-weight:400;color:var(--soft);margin-top:2px}
+.search label:nth-child(4){border-right:0}
+.go{background:var(--ink);color:#fff;border:0;border-radius:10px;padding:14px 26px;font:700 .875rem var(--sans);cursor:pointer;transition:background-color .3s}
+.go:hover{background:var(--green-2)}
+.trust{width:var(--wrap);margin:26px auto 0;background:var(--card);border-radius:16px;border:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:18px 24px}
+.trust div{display:flex;gap:12px;align-items:flex-start;font:700 .8125rem/1.3 var(--sans)}
+.trust span{display:block;font-weight:400;color:var(--soft);font-size:.75rem;margin-top:4px}
+.trust svg{flex:none;width:30px;height:30px;stroke:var(--green);fill:none;stroke-width:1.5}
+
+.dest{padding:clamp(40px,5vw,60px) 0 20px}
+.dest__head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px}
+.dest__head h2{font:700 1.25rem var(--sans)}
+.dest__head a{font:600 .8125rem var(--sans)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.place{background:#14291f;position:relative;aspect-ratio:1/1.12;border-radius:14px;overflow:hidden;display:block;color:#fff}
+.place svg{position:absolute;inset:0;width:100%;height:100%;transition:transform .8s var(--ease)}
+.place:hover svg{transform:scale(1.05)}
+.place::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(10,25,18,.78) 100%)}
+.place .rate{position:absolute;left:10px;top:10px;z-index:1;background:rgba(10,25,18,.78);font:700 .75rem var(--sans);padding:4px 9px;border-radius:6px}
+.place .txt{position:absolute;left:14px;right:14px;bottom:12px;z-index:1;display:flex;justify-content:space-between;align-items:flex-end}
+.place b{display:block;font:700 .9375rem var(--sans)}
+.place small{font-size:.75rem;opacity:.92}
+.place .price{font:800 1.125rem var(--sans);color:#ffb45a}
+.cats{display:flex;justify-content:space-between;gap:14px;margin:26px 0 0;flex-wrap:wrap}
+.cat{display:flex;align-items:center;gap:10px;font:600 .8125rem var(--sans)}
+.cat i{width:46px;height:46px;border-radius:50%;background:#e7eedf;display:grid;place-items:center}
+.cat svg{width:22px;height:22px;stroke:var(--green);fill:none;stroke-width:1.5}
+
+.stories{margin-top:40px;background:var(--sand);border-radius:18px;padding:clamp(22px,3vw,34px);display:grid;grid-template-columns:1fr 1.5fr;gap:26px;align-items:center}
+.stories h2{font:700 1.625rem/1.2 var(--sans);margin-bottom:10px}
+.stories p{color:var(--soft);font-size:.875rem;margin-bottom:18px;max-width:34ch}
+.btn-g{display:inline-flex;gap:12px;background:var(--green);color:#fff;font:700 .8125rem var(--sans);padding:12px 20px;border-radius:10px;transition:background-color .3s}
+.btn-g:hover{background:var(--green-2)}
+.btn-g::after{content:"\2192"}
+.posts{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.post{background:var(--card);border-radius:12px;overflow:hidden}
+.post svg{display:block;width:100%;aspect-ratio:1.9}
+.post div{padding:10px 14px 12px;font:700 .8125rem/1.35 var(--sans)}
+.post span{display:block;font-weight:400;color:var(--soft);font-size:.75rem;margin-top:3px}
+
+.offer{margin-top:26px;position:relative;border-radius:18px;overflow:hidden;background:var(--green);color:#fff;display:grid;grid-template-columns:1.2fr 1fr;min-height:230px}
+.offer svg{position:absolute;inset:0;width:62%;height:100%}
+.offer__txt{grid-column:2;padding:30px clamp(20px,3vw,40px);position:relative;z-index:1}
+.offer__txt small{font:600 .75rem var(--sans);letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+.offer__txt h2{font:600 clamp(1.5rem,2.6vw,2rem)/1.2 var(--serif);margin:10px 0}
+.offer__txt p{font-size:.8125rem;opacity:.92;margin-bottom:18px}
+.nums{display:grid;grid-template-columns:repeat(4,1fr) 1.3fr;gap:16px;padding:22px 0;margin-top:14px;align-items:center;font:700 .875rem var(--sans)}
+.nums div{display:flex;gap:10px;align-items:center}
+.nums b{font:800 1.125rem var(--sans);display:block}
+.nums span{font-weight:400;color:var(--soft);font-size:.75rem}
+.nums svg{width:28px;height:28px;stroke:var(--green);fill:none;stroke-width:1.5;flex:none}
+footer{border-top:1px solid var(--line);margin-top:10px;padding:34px 0 26px;font-size:.8125rem;color:var(--soft)}
+.fgrid{display:grid;grid-template-columns:1.3fr repeat(3,1fr) 1.3fr;gap:24px}
+.fgrid h3{font:700 .8125rem var(--sans);color:var(--ink);margin-bottom:10px}
+.fgrid a{display:block;margin-bottom:6px}
+.fgrid a:hover{color:var(--ink)}
+.news{display:flex;margin-top:8px}
+.news span{flex:1;border:1px solid var(--line);border-right:0;padding:8px 10px;border-radius:8px 0 0 8px;background:#fff;color:#6b7a72}
+.news b{background:var(--green);color:#fff;padding:8px 14px;border-radius:0 8px 8px 0;font-size:.75rem}
+.copy{text-align:center;margin-top:24px;font-size:.75rem}
+
+@media (max-width:860px){.top ul{display:none}.hero__copy{top:130px}.search{grid-template-columns:1fr 1fr}.search label{border-right:0}.go{grid-column:1/-1}.trust,.grid{grid-template-columns:repeat(2,1fr)}.stories,.offer{grid-template-columns:1fr}.offer svg{position:static;width:100%;height:160px}.offer__txt{grid-column:1}.nums,.fgrid{grid-template-columns:repeat(2,1fr)}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<nav class="top" aria-label="Main">
+  <a class="logo" href="#"><i></i><span>Fernwood<small>Explore. Dream. Discover.</small></span></a>
+  <ul><li><a href="#" aria-current="page">Home</a></li><li><a href="#">Destinations</a></li><li><a href="#">Tours</a></li><li><a href="#">Travel Guide</a></li><li><a href="#">Blog</a></li><li><a href="#">About Us</a></li></ul>
+  <div class="icons" aria-hidden="true"><i></i><i></i><i></i></div>
+</nav>
+
+<header class="hero">
+  <svg class="hero__art" viewBox="0 0 1400 640" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e9eef2"/><stop offset=".6" stop-color="#f6f7f3"/></linearGradient><linearGradient id="lake" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2f9d9b"/><stop offset=".5" stop-color="#58c4be"/><stop offset="1" stop-color="#2a8a8c"/></linearGradient></defs>
+    <rect width="1400" height="640" fill="url(#sky)"/>
+    <path d="M520 320L700 120l80 70 100-130 110 90 90-60 130 110 170 40V400H520Z" fill="#8a97a3"/>
+    <path d="M700 120l40 50-30 18ZM880 60l40 60-40 10ZM1040 150l30 40-40 8Z" fill="#fff"/>
+    <path d="M560 340L800 190l120 90 110-60 200 100 210 40V420H560Z" fill="#46604f"/>
+    <path d="M520 400Q900 360 1400 400V640H520Z" fill="url(#lake)"/>
+    <path d="M520 470Q900 430 1400 470" stroke="#a9e5df" stroke-width="3" fill="none" opacity=".6"/>
+    <g fill="#1d3a2a"><path d="M930 560l20-120 20 120zM975 580l24-150 24 150zM1040 560l18-100 18 100z"/></g>
+    <g><ellipse cx="1130" cy="500" rx="26" ry="8" fill="#d6512a"/><ellipse cx="1180" cy="520" rx="26" ry="8" fill="#f59a30"/></g>
+    <path d="M1280 330Q1340 380 1340 480 1330 600 1250 640H1400V330Z" fill="#f8f8f3"/>
+    <path d="M0 330Q60 350 80 440 70 560 0 600Z" fill="#eef1ea"/>
+    <path d="M0 440Q90 400 150 520T260 640H0Z" fill="#2d6a45" opacity=".85"/>
+    <path d="M40 200l30 40-40 10ZM110 160l24 40-34 6Z" fill="#6aa071"/>
+  </svg>
+  <div class="hero__copy">
+    <h1>Discover Nature.<br><em>Find Your Escape.</em></h1>
+    <p>Breathtaking places, unforgettable experiences, crafted just for you.</p>
+    <a class="btn-o" href="#">Explore now</a>
+  </div>
+</header>
+
+<form class="search" onsubmit="return false" aria-label="Search trips">
+  <label>Where to?<span>Any destination</span></label><label>Check in<span>Add date</span></label><label>Check out<span>Add date</span></label><label>Travelers<span>2 travelers</span></label>
+  <button class="go" type="submit">Search</button>
+</form>
+<section class="trust" aria-label="Why us">
+  <div><svg viewBox="0 0 30 30"><circle cx="15" cy="15" r="11"/><path d="M19 11l-3 8-5 2 3-8z"/></svg><p>Handpicked Destinations<span>Curated places you'll love.</span></p></div>
+  <div><svg viewBox="0 0 30 30"><path d="M4 15l11-11h10v10L14 25z"/><circle cx="20" cy="10" r="1.5"/></svg><p>Best Price Guarantee<span>Get the best deals always.</span></p></div>
+  <div><svg viewBox="0 0 30 30"><path d="M15 3l10 4v7c0 6-4 10-10 13C9 24 5 20 5 14V7z"/><path d="M11 15l3 3 5-6"/></svg><p>Safe &amp; Trusted Travel<span>Your safety is our priority.</span></p></div>
+  <div><svg viewBox="0 0 30 30"><path d="M6 17v-3a9 9 0 0118 0v3"/><rect x="4" y="16" width="5" height="8" rx="2"/><rect x="21" y="16" width="5" height="8" rx="2"/></svg><p>24/7 Customer Support<span>We're here for you anytime.</span></p></div>
+</section>
+
+<main class="wrap">
+  <section class="dest">
+    <div class="dest__head"><h2>Popular Destinations</h2><a href="#">View all destinations &rarr;</a></div>
+    <div class="grid">
+      <a class="place" href="#"><svg viewBox="0 0 280 310" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="280" height="310" fill="#9cc3dc"/><path d="M0 170L70 70l50 60 60-80 100 110v50H0Z" fill="#5a7387"/><path d="M0 210Q140 170 280 210V310H0Z" fill="#2f8f93"/><path d="M60 240h90l-10 14H70Z" fill="#8a5a3a"/></svg><span class="rate">&#9733; 4.8</span><div class="txt"><div><b>Lakeside Peaks</b><small>Mountains &amp; water</small></div><span class="price">$699</span></div></a>
+      <a class="place" href="#"><svg viewBox="0 0 280 310" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="280" height="310" fill="#8fd6e6"/><path d="M0 150Q140 120 280 150V310H0Z" fill="#35c0c6"/><path d="M40 210h200v10H40Z" fill="#8a6a4a"/><path d="M70 170l30-24 30 24zM150 170l30-24 30 24z" fill="#6a4a2e"/></svg><span class="rate">&#9733; 4.7</span><div class="txt"><div><b>Coral Bay</b><small>Tropical paradise</small></div><span class="price">$899</span></div></a>
+      <a class="place" href="#"><svg viewBox="0 0 280 310" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="280" height="310" fill="#c9d5e6"/><circle cx="60" cy="90" r="50" fill="#f0b6c6"/><circle cx="110" cy="140" r="40" fill="#f6cbd6"/><path d="M170 60l-14 34h28zM160 94h20l8 26h-36zM150 120h40l8 40h-56z" fill="#b4412f"/><path d="M0 230Q140 200 280 230V310H0Z" fill="#46604f"/></svg><span class="rate">&#9733; 4.9</span><div class="txt"><div><b>Blossom Hills</b><small>Timeless culture</small></div><span class="price">$799</span></div></a>
+      <a class="place" href="#"><svg viewBox="0 0 280 310" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="au" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2a9d6a"/><stop offset="1" stop-color="#6a4bd0"/></linearGradient></defs><rect width="280" height="310" fill="#0e2233"/><path d="M0 120Q80 40 160 110T280 70V130Q180 110 130 160T0 160Z" fill="url(#au)" opacity=".85"/><path d="M0 230Q140 200 280 230V310H0Z" fill="#0a1a26"/><path d="M120 250l16-30 16 30zM170 262l12-22 12 22z" fill="#f59a30"/></svg><span class="rate">&#9733; 4.6</span><div class="txt"><div><b>Northern Lights</b><small>Land of fire &amp; ice</small></div><span class="price">$749</span></div></a>
+    </div>
+    <div class="cats">
+      <div class="cat"><i><svg viewBox="0 0 22 22"><path d="M2 18L9 5l4 7 3-4 4 10z"/></svg></i>Adventure</div>
+      <div class="cat"><i><svg viewBox="0 0 22 22"><path d="M11 18V8M11 8c-3-4-7-3-8 0 3-1 5 0 8 0zM11 8c3-4 7-3 8 0-3-1-5 0-8 0z"/></svg></i>Beach</div>
+      <div class="cat"><i><svg viewBox="0 0 22 22"><path d="M4 18C4 9 9 5 18 4c0 9-4 14-12 14M4 18l8-8"/></svg></i>Nature</div>
+      <div class="cat"><i><svg viewBox="0 0 22 22"><path d="M3 9l8-5 8 5M5 9v8M9 9v8M13 9v8M17 9v8M3 18h16"/></svg></i>Culture</div>
+      <div class="cat"><i><svg viewBox="0 0 22 22"><path d="M11 19S3 14 3 8.500A4.500 4.500 0 0111 6a4.500 4.500 0 018 2.500C19 14 11 19 11 19z"/></svg></i>Honeymoon</div>
+      <div class="cat"><i><svg viewBox="0 0 22 22"><circle cx="8" cy="8" r="3"/><circle cx="15" cy="9" r="2.500"/><path d="M3 18c0-4 3-6 5-6s5 2 5 6M14 13c3 0 5 2 5 5"/></svg></i>Family</div>
+    </div>
+
+    <div class="stories">
+      <div><h2>Travel Stories &amp; Guides</h2><p>Get travel tips, destination guides and inspiring stories from around the world.</p><a class="btn-g" href="#">Read travel stories</a></div>
+      <div class="posts">
+        <article class="post"><svg viewBox="0 0 300 160" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="300" height="160" fill="#b9d6e6"/><path d="M0 100L70 40l50 40 70-50 110 70v60H0Z" fill="#5f7d6a"/><path d="M0 120Q150 90 300 120V160H0Z" fill="#2f6a4a"/></svg><div>10 Hidden Gems in Europe<span>5 min read</span></div></article>
+        <article class="post"><svg viewBox="0 0 300 160" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="300" height="160" fill="#cfe0ea"/><path d="M0 90L90 30l60 50 60-40 90 60v60H0Z" fill="#6f8796"/><path d="M0 120Q150 100 300 124V160H0Z" fill="#3a7c8a"/><circle cx="150" cy="118" r="10" fill="#8a5a3a"/></svg><div>Packing Essentials for Every Trip<span>4 min read</span></div></article>
+      </div>
+    </div>
+
+    <div class="offer">
+      <svg viewBox="0 0 500 230" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="500" height="230" fill="#7fb8d8"/><path d="M0 130L90 50l70 60 70-70 110 90 90-30 70 40v90H0Z" fill="#4a6f5a"/><path d="M0 170Q250 120 500 170V230H0Z" fill="#2c8f8a"/><path d="M60 230l20-90 20 90zM110 230l18-70 18 70z" fill="#16392a"/></svg>
+      <div class="offer__txt"><small>Special offer</small><h2>Your Next Adventure Starts Here</h2><p>Exclusive packages. Flexible bookings. Memories that last a lifetime.</p><a class="btn-o" href="#">Discover packages</a></div>
+    </div>
+
+    <div class="nums">
+      <div><svg viewBox="0 0 28 28"><path d="M3 22L11 7l5 9 3-5 6 11z"/></svg><p><b>100+</b><span>Destinations</span></p></div>
+      <div><svg viewBox="0 0 28 28"><circle cx="10" cy="10" r="4"/><circle cx="19" cy="11" r="3"/><path d="M3 23c0-5 4-7 7-7s7 2 7 7"/></svg><p><b>50K+</b><span>Happy Travelers</span></p></div>
+      <div><svg viewBox="0 0 28 28"><path d="M14 3l3.500 7.500 8 1-6 5.500 1.500 8L14 21l-7 4 1.500-8-6-5.500 8-1z"/></svg><p><b>4.8</b><span>Average Rating</span></p></div>
+      <div><svg viewBox="0 0 28 28"><circle cx="14" cy="14" r="10"/><path d="M14 8v6l4 3"/></svg><p><b>24/7</b><span>Support</span></p></div>
+      <div></div>
+    </div>
+  </section>
+</main>
+<footer><div class="wrap">
+  <div class="fgrid">
+    <div><a class="logo" href="#"><i></i><span>Fernwood</span></a><p style="margin-top:10px;max-width:26ch">We bring you closer to the world's most amazing places.</p></div>
+    <div><h3>Company</h3><a href="#">About Us</a><a href="#">Careers</a><a href="#">Press</a></div>
+    <div><h3>Support</h3><a href="#">Help Center</a><a href="#">FAQ</a><a href="#">Privacy Policy</a></div>
+    <div><h3>Top Destinations</h3><a href="#">Lakeside Peaks</a><a href="#">Coral Bay</a><a href="#">Blossom Hills</a></div>
+    <div><h3>Newsletter</h3><p>Subscribe for travel inspiration and exclusive deals.</p><div class="news"><span>Enter your email</span><b>Subscribe</b></div></div>
+  </div>
+  <p class="copy">&copy; 2026 Fernwood Escape. Demo content, not a real company.</p>
+</div></footer>
+</body>
+</html>

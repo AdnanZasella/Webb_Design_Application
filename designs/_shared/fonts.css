@@ -1,0 +1,9 @@
+/* Fonts used by the mock pages in designs/. Paths are relative to this file. */
+@font-face{font-family:'Barlow';font-weight:400;font-display:swap;src:url('../../fonts/Barlow-400.woff2') format('woff2');}
+@font-face{font-family:'Barlow';font-weight:500;font-display:swap;src:url('../../fonts/Barlow-500.woff2') format('woff2');}
+@font-face{font-family:'Barlow Condensed';font-weight:500;font-display:swap;src:url('../../fonts/BarlowCondensed-500.woff2') format('woff2');}
+@font-face{font-family:'Barlow Condensed';font-weight:700;font-display:swap;src:url('../../fonts/BarlowCondensed-700.woff2') format('woff2');}
+@font-face{font-family:'Archivo Black';font-weight:400;font-display:swap;src:url('../../fonts/ArchivoBlack-400.woff2') format('woff2');}
+@font-face{font-family:'Manrope';font-weight:400 800;font-display:swap;src:url('../../fonts/Manrope-400-800.woff2') format('woff2');}
+@font-face{font-family:'Michroma';font-weight:400;font-display:swap;src:url('../../fonts/Michroma-400.woff2') format('woff2');}
+@font-face{font-family:'Montserrat';font-weight:400 800;font-display:swap;src:url('../../fonts/Montserrat-400-800.woff2') format('woff2');}

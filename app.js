@@ -12,6 +12,10 @@
   };
   const pad = (n) => String(n).padStart(2, '0');
 
+  // Original reference screenshots live in references/ (local only). Show them first when present.
+  const refOk = new Set();
+  const pics = (d) => (refOk.has(d.id) ? [{ file: d.reference, caption: 'Your original reference' }, ...d.images] : d.images);
+
   const state = { category: 'All', query: '', savedOnly: false, current: null, imageIndex: 0 };
   const dlg = $('detail');
 
@@ -71,7 +75,7 @@
 
       const media = el('div', 'card__media');
       const img = el('img');
-      img.src = d.images[0].file;
+      img.src = pics(d)[0].file;
       img.alt = '';
       img.loading = 'lazy';
       media.append(img);
@@ -118,7 +122,7 @@
     L.push(`# Design reference: ${d.title}`, '');
     L.push(`Use this as visual inspiration for the website you are building. Look at the images first, then follow the description. Capture the feeling and the system; do not copy the original site's content or branding.`, '');
     L.push('## Images (view these first)');
-    d.images.forEach((im) => L.push(`- ${imgPath(im.file)}${im.caption ? `  (${im.caption})` : ''}`));
+    pics(d).forEach((im) => L.push(`- ${imgPath(im.file)}${im.caption ? `  (${im.caption})` : ''}`));
     L.push('');
     if (d.page) {
       L.push('## Live mock page', `- ${imgPath(d.page)}  (an original HTML page in this style with placeholder content; open it in a browser or read its source for exact CSS values)`, '');
@@ -158,10 +162,10 @@
   function setImage(i) {
     const d = state.current;
     state.imageIndex = i;
-    const im = d.images[i];
+    const im = pics(d)[i];
     $('d-image').src = im.file;
     $('d-image').alt = `${d.title}: ${im.caption || 'screenshot'}`;
-    $('d-caption').textContent = `${im.caption || 'Screenshot'}  ·  ${i + 1} / ${d.images.length}`;
+    $('d-caption').textContent = `${im.caption || 'Screenshot'}  ·  ${i + 1} / ${pics(d).length}`;
     [...$('d-thumbs').children].forEach((t, k) => t.setAttribute('aria-current', String(k === i)));
   }
 
@@ -204,8 +208,8 @@
 
     const thumbs = $('d-thumbs');
     thumbs.replaceChildren();
-    if (d.images.length > 1) {
-      d.images.forEach((im, i) => {
+    if (pics(d).length > 1) {
+      pics(d).forEach((im, i) => {
         const b = el('button', 'thumb');
         b.type = 'button';
         b.setAttribute('aria-label', `Show ${im.caption || 'image ' + (i + 1)}`);
@@ -306,7 +310,7 @@
 
   async function copyImage() {
     const d = state.current;
-    const im = d.images[state.imageIndex];
+    const im = pics(d)[state.imageIndex];
     try {
       const png = await toPng(im.file);
       await navigator.clipboard.write([new ClipboardItem({ 'image/png': png })]);
@@ -359,14 +363,14 @@
       // Inside the zip the images sit next to brief.md, so the brief points at them by relative path.
       const keep = rootDir;
       rootDir = null;
-      const names = d.images.map((im) => im.file.split('/').pop());
+      const names = pics(d).map((im) => im.file.split('/').pop());
       let brief = buildBrief(d);
-      d.images.forEach((im, i) => { brief = brief.replace(im.file, `./images/${names[i]}`); });
+      pics(d).forEach((im, i) => { brief =brief.replace(im.file, `./images/${names[i]}`); });
       if (d.page) brief = brief.replace(/## Live mock page[\s\S]*?\n\n/, ''); // the page itself is not in the zip
       rootDir = keep;
       const files = [{ name: 'brief.md', data: enc.encode(brief) }];
-      for (let i = 0; i < d.images.length; i++) {
-        const res = await fetch(d.images[i].file);
+      for (let i = 0; i < pics(d).length; i++) {
+        const res = await fetch(pics(d)[i].file);
         files.push({ name: `images/${names[i]}`, data: new Uint8Array(await res.arrayBuffer()) });
       }
       const url = URL.createObjectURL(makeZip(files));
@@ -407,6 +411,12 @@
     if (e.key === 'ArrowRight') { e.preventDefault(); step(1); }
   });
   window.addEventListener('hashchange', () => { const id = location.hash.slice(1); if (id) openDetail(id, true); });
+
+  DESIGNS.filter((d) => d.reference).forEach((d) => {
+    const probe = new Image();
+    probe.onload = () => { refOk.add(d.id); renderGrid(); };
+    probe.src = d.reference;
+  });
 
   computeRoot().then(() => {
     update();

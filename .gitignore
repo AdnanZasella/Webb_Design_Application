@@ -16,3 +16,7 @@ node_modules/
 # Raw reference screenshots stay local (other people's work)
 inbox/*
 !inbox/README.md
+
+# Original reference screenshots stay local
+references/*
+!references/README.md

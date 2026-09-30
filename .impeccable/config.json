@@ -12,6 +12,42 @@
           "index.html"
         ],
         "createdAt": "2026-09-30T18:27:08.425Z"
+      },
+      {
+        "rule": "clipped-overflow-container",
+        "value": "*",
+        "files": [
+          "designs/dusk-voyage/index.html"
+        ],
+        "createdAt": "2026-09-30T18:40:37.183Z",
+        "reason": "Decorative background layers are cropped by design; no menus or popovers inside"
+      },
+      {
+        "rule": "gradient-text",
+        "value": "*",
+        "files": [
+          "designs/bronze-hall/index.html"
+        ],
+        "createdAt": "2026-09-30T18:42:05.744Z",
+        "reason": "Image-filled numeral 12 is the pinned reference signature; decorative, one element"
+      },
+      {
+        "rule": "clipped-overflow-container",
+        "value": "*",
+        "files": [
+          "designs/violet-orbit/index.html"
+        ],
+        "createdAt": "2026-09-30T18:43:43.312Z",
+        "reason": "Decorative triangles and planet dots are cropped by the page edge on purpose"
+      },
+      {
+        "rule": "ai-color-palette",
+        "value": "*",
+        "files": [
+          "designs/violet-orbit/index.html"
+        ],
+        "createdAt": "2026-09-30T18:43:56.178Z",
+        "reason": "Violet palette is the pinned look of the user's reference screenshot"
       }
     ]
   }

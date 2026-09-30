@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Violet Orbit</title>
+<style>
+@font-face{font-family:'Barlow';font-weight:400;font-display:swap;src:url('../../fonts/Barlow-400.woff2') format('woff2');}
+@font-face{font-family:'Barlow';font-weight:500;font-display:swap;src:url('../../fonts/Barlow-500.woff2') format('woff2');}
+@font-face{font-family:'Barlow Condensed';font-weight:500;font-display:swap;src:url('../../fonts/BarlowCondensed-500.woff2') format('woff2');}
+@font-face{font-family:'Barlow Condensed';font-weight:700;font-display:swap;src:url('../../fonts/BarlowCondensed-700.woff2') format('woff2');}
+
+:root{
+  --bg:#3a2a66; --bg-2:#42307a; --bg-3:#2f2256; --nav:#2d2052;
+  --ink:#f2eefb; --ink-soft:#d6cdee; --mute:#a99bd6;
+  --v1:#8a5cf0; --v2:#c468d6; --grad:linear-gradient(135deg,var(--v1),var(--v2));
+  --display:'Barlow Condensed','Arial Narrow',sans-serif; --body:'Barlow',system-ui,sans-serif;
+  --wrap:min(1040px,calc(100% - 48px)); --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:400 1rem/1.7 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--v2);color:#1d1238}
+:focus-visible{outline:2px solid #e3b7ff;outline-offset:3px}
+.wrap{width:var(--wrap);margin:0 auto;position:relative}
+.stars{position:absolute;inset:0;pointer-events:none;opacity:.7;
+  background-image:radial-gradient(1.5px 1.5px at 8% 12%,#fff 50%,transparent 52%),radial-gradient(1px 1px at 22% 40%,#fff 50%,transparent 52%),radial-gradient(1.3px 1.3px at 41% 8%,#fff 50%,transparent 52%),radial-gradient(1px 1px at 63% 33%,#fff 50%,transparent 52%),radial-gradient(1.4px 1.4px at 82% 14%,#fff 50%,transparent 52%),radial-gradient(1px 1px at 93% 46%,#fff 50%,transparent 52%),radial-gradient(1px 1px at 52% 58%,#fff 50%,transparent 52%);
+  background-size:620px 520px}
+.tri{position:absolute;pointer-events:none}
+.tri svg{display:block;width:100%;height:100%;fill:none;stroke:url(#g);stroke-width:5}
+
+/* nav */
+.nav{background:var(--nav);border-top:2px solid var(--v1)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+.logo{display:flex;align-items:center;gap:10px;font:700 .875rem var(--body);letter-spacing:.04em;color:#ecc2fb;text-transform:uppercase}
+.logo svg{width:28px;height:28px;stroke:#b17aed;fill:none;stroke-width:1.6}
+.nav ul{list-style:none;padding:0;display:flex;gap:clamp(18px,4vw,50px);font:500 .8125rem var(--body);letter-spacing:.06em;text-transform:uppercase}
+.nav a{padding:6px 0;border-bottom:2px solid transparent;transition:border-color .3s var(--ease)}
+.nav a:hover{border-color:var(--v2)}
+
+/* hero */
+.hero{position:relative;overflow:hidden;background:radial-gradient(90% 70% at 50% 30%,#5a3f99 0%,#45317f 55%,var(--bg) 100%);padding:clamp(40px,6vw,70px) 0 0}
+.hero__top{display:grid;grid-template-columns:1fr 1.15fr;gap:40px;align-items:center;position:relative}
+.badge{position:relative;aspect-ratio:1/1;max-width:400px;margin-left:-10px}
+.badge .tri{inset:6% 0 0 0}
+.badge .astro{position:absolute;left:14%;top:0;width:70%}
+.hero__copy small{display:block;font:500 .9375rem var(--body);letter-spacing:.42em;text-transform:uppercase;color:#e0b4f8;margin-bottom:12px}
+.hero__copy h1{font:700 clamp(3rem,7vw,5rem)/1 var(--body);letter-spacing:.02em;text-transform:uppercase;margin-bottom:22px}
+.hero__copy p{color:var(--ink-soft);max-width:48ch}
+.features{display:grid;position:relative;grid-template-columns:repeat(3,1fr);gap:34px 30px;padding:clamp(50px,7vw,80px) 0 clamp(50px,7vw,80px);position:relative}
+.feature{display:flex;gap:18px;align-items:flex-start}
+.hex{flex:none;width:68px;height:76px;background:#4c3a86;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);display:grid;place-items:center;box-shadow:inset 0 0 0 2px #6e56b5}
+.hex svg{width:26px;height:26px;stroke:#e0d4ff;fill:none;stroke-width:1.6}
+.feature small{display:block;font:500 .75rem var(--body);letter-spacing:.3em;text-transform:uppercase;color:#e0b4f8}
+.feature h3{font:700 1.25rem/1.2 var(--display);letter-spacing:.02em;text-transform:uppercase;margin:2px 0 6px}
+.feature p{font-size:.8125rem;line-height:1.6;color:var(--ink-soft)}
+
+/* gallery */
+.gallery{background:var(--bg-2);padding:clamp(56px,8vw,90px) 0;position:relative;overflow:hidden}
+.gallery__grid{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(30px,5vw,70px);align-items:center}
+.collage{position:relative;height:clamp(300px,42vw,430px);margin-left:calc((100vw - min(1040px,100vw - 48px)) / -2)}
+.collage .back{position:absolute;left:0;top:0;width:62%;height:76%;overflow:hidden}
+.collage .frame{position:absolute;left:clamp(130px,28%,310px);top:6%;width:min(60%,300px);height:94%}
+.collage .frame::before{content:"";position:absolute;right:-28px;top:-28px;width:100%;height:100%;background:var(--grad)}
+.collage .frame > svg,.collage .back > svg{position:relative;width:100%;height:100%;display:block}
+.playb{position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;background:rgba(151,100,224,.85);display:grid;place-items:center;border:0;cursor:pointer;transition:transform .3s var(--ease)}
+.playb:hover{transform:translate(-50%,-50%) scale(1.1)}
+.playb svg{width:14px;height:14px;fill:#fff;margin-left:2px}
+.arrows{position:absolute;left:clamp(24px,4vw,40px);bottom:-6px;display:flex;gap:2px}
+.arrows button{width:52px;height:50px;background:var(--nav);color:var(--ink);border:0;font-size:1.25rem;cursor:pointer;transition:background-color .3s}
+.arrows button:hover{background:#5a3f99}
+h2.label{font:700 clamp(1.25rem,2.6vw,1.75rem)/1.2 var(--body);letter-spacing:.42em;text-transform:uppercase;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:26px}
+.prose p{color:var(--ink-soft);font-size:.9375rem;margin-bottom:20px;max-width:56ch}
+
+/* think */
+.think{position:relative;padding:clamp(56px,8vw,90px) 0;background:linear-gradient(180deg,var(--bg-2),var(--bg))}
+.think__grid{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(30px,5vw,70px);align-items:center}
+.box{position:relative;justify-self:end;width:min(100%,420px);aspect-ratio:1/1.05;border:8px solid transparent;border-image:linear-gradient(135deg,var(--v1),var(--v2)) 1;border-bottom-color:transparent}
+.box h3{position:absolute;right:26px;top:14px;text-align:right;font:700 clamp(2.25rem,5vw,3.25rem)/1.15 var(--display);text-transform:uppercase;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.box svg{position:absolute;left:-18%;bottom:-8%;width:78%}
+
+/* stats */
+.stats{background:var(--bg-3);padding:clamp(40px,6vw,64px) 0}
+.stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);text-align:center;gap:24px}
+.stats b{display:block;font:500 clamp(2.25rem,5vw,3.25rem)/1.1 var(--body);letter-spacing:.2em}
+.stats span{font:400 .8125rem var(--body);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft)}
+
+/* contact */
+.contact{position:relative;padding:clamp(40px,6vw,70px) 0 0;overflow:hidden;background:var(--bg-3)}
+.card{width:min(740px,calc(100% - 48px));margin:0 auto;background:#3c2d6e;border:1px solid #54428f;border-top:0;position:relative;padding:40px clamp(20px,5vw,52px) 40px}
+.card::before{content:"";position:absolute;left:-1px;right:-1px;top:0;height:4px;background:var(--v1)}
+.card h2{font:700 1.5rem var(--display);text-align:center;letter-spacing:.02em;text-transform:uppercase;padding-bottom:20px;border-bottom:1px solid #6b58a8;margin-bottom:24px}
+.card__grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
+.card h3{font:500 1.0625rem var(--body);letter-spacing:.3em;text-transform:uppercase;color:#ecc2fb;margin-bottom:14px}
+.card address{font-style:normal;font-size:.875rem;color:var(--ink-soft);line-height:2}
+.building{aspect-ratio:1.5;border:2px solid #fff;overflow:hidden}
+.building svg{width:100%;height:100%;display:block}
+.dots{height:clamp(150px,22vw,230px);margin-top:30px;position:relative;
+  background:radial-gradient(circle at 50% 100%,#a66cf0 0 2.4px,transparent 3px) 0 0 / 15px 15px,radial-gradient(circle at 50% 100%,#d178d8 0 1.8px,transparent 2.4px) 7px 7px / 15px 15px;
+  -webkit-mask:radial-gradient(75% 130% at 50% 100%,#000 55%,transparent 56%);mask:radial-gradient(75% 130% at 50% 100%,#000 55%,transparent 56%)}
+.dots::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#6f7cf0,transparent 40%,transparent 60%,#e075c8);mix-blend-mode:screen;opacity:.45}
+
+@media (max-width:820px){
+  .nav ul{display:none}
+  .hero__top,.gallery__grid,.think__grid,.card__grid{grid-template-columns:1fr}
+  .features{grid-template-columns:1fr}
+  .stats .wrap{grid-template-columns:repeat(2,1fr)}
+  .collage{margin-left:0}
+  .badge{margin:0 auto}
+  .box{justify-self:center}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.features .visually-hidden{grid-column:1/-1}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8a5cf0"/><stop offset="1" stop-color="#c468d6"/></linearGradient></defs></svg>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#"><svg viewBox="0 0 28 28"><circle cx="14" cy="14" r="11"/><circle cx="14" cy="14" r="5"/><path d="M4 22L24 6"/></svg>Violet Orbit</a>
+    <ul><li><a href="#">Home</a></li><li><a href="#features">Features</a></li><li><a href="#gallery">Gallery</a></li><li><a href="#">Blog</a></li><li><a href="#contact">Contact</a></li></ul>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="stars"></div>
+  <div class="wrap">
+    <div class="hero__top">
+      <div class="badge" aria-hidden="true">
+        <div class="tri"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M6 14H94L50 96Z" stroke-width="5" vector-effect="non-scaling-stroke"/></svg></div>
+        <svg class="astro" viewBox="0 0 240 280"><defs><linearGradient id="suit" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4f1fa"/><stop offset="1" stop-color="#a9a2c2"/></linearGradient></defs>
+          <rect x="70" y="120" width="110" height="130" rx="34" fill="url(#suit)"/>
+          <rect x="30" y="150" width="60" height="26" rx="13" fill="url(#suit)" transform="rotate(-24 60 163)"/>
+          <rect x="160" y="110" width="66" height="26" rx="13" fill="url(#suit)" transform="rotate(-38 190 123)"/>
+          <circle cx="126" cy="76" r="58" fill="url(#suit)"/>
+          <rect x="84" y="46" width="84" height="60" rx="30" fill="#1d1538"/>
+          <path d="M96 58 Q126 48 154 62" stroke="#8a7fc0" stroke-width="3" fill="none" opacity=".7"/>
+          <rect x="98" y="168" width="52" height="30" rx="6" fill="#d5cfe6"/></svg>
+      </div>
+      <div class="hero__copy">
+        
+        <h1>Voyager</h1>
+        <p>Orbital lab. A quiet research station circling far above the clouds. Follow the crew, the experiments and the long, slow views of the planet below.</p>
+      </div>
+    </div>
+    <div class="features" id="features"><h2 class="visually-hidden">Features</h2>
+      <div class="feature"><div class="hex"><svg viewBox="0 0 26 26"><circle cx="13" cy="13" r="5"/><ellipse cx="13" cy="13" rx="11" ry="3.5" transform="rotate(-20 13 13)"/></svg></div><div><h3>Feature 1</h3><p>Short line about what this feature gives the visitor, kept to two lines.</p></div></div>
+      <div class="feature"><div class="hex"><svg viewBox="0 0 26 26"><path d="M3 9V3h6M17 3h6v6M23 17v6h-6M9 23H3v-6"/></svg></div><div><h3>Feature 2</h3><p>Short line about what this feature gives the visitor, kept to two lines.</p></div></div>
+      <div class="feature"><div class="hex"><svg viewBox="0 0 26 26"><path d="M15 2L5 15h7l-2 9 10-13h-7z"/></svg></div><div><h3>Feature 3</h3><p>Short line about what this feature gives the visitor, kept to two lines.</p></div></div>
+      <div class="feature"><div class="hex"><svg viewBox="0 0 26 26"><circle cx="13" cy="10" r="6"/><path d="M9 15l-3 9 7-3 7 3-3-9"/></svg></div><div><h3>Feature 4</h3><p>Short line about what this feature gives the visitor, kept to two lines.</p></div></div>
+      <div class="feature"><div class="hex"><svg viewBox="0 0 26 26"><circle cx="13" cy="13" r="10"/><ellipse cx="13" cy="13" rx="4" ry="10"/><path d="M3 13h20"/></svg></div><div><h3>Feature 5</h3><p>Short line about what this feature gives the visitor, kept to two lines.</p></div></div>
+      <div class="feature"><div class="hex"><svg viewBox="0 0 26 26"><circle cx="13" cy="13" r="2.5"/><path d="M7 7a8 8 0 000 12M19 7a8 8 0 010 12M3.5 4a13 13 0 000 18M22.5 4a13 13 0 010 18"/></svg></div><div><h3>Feature 6</h3><p>Short line about what this feature gives the visitor, kept to two lines.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="tri" style="right:-30px;top:40px;width:70px;height:70px"><svg viewBox="0 0 100 100"><path d="M10 10L95 50 10 90Z"/></svg></div>
+  <div class="wrap gallery__grid">
+    <div class="collage">
+      <div class="back"><svg viewBox="0 0 300 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="300" height="260" fill="#0b1030"/><rect x="0" y="0" width="300" height="60" fill="#1a2350"/><path d="M0 40 H300 M0 20 H300" stroke="#56628f" stroke-width="1"/><path d="M40 0V60M100 0V60M160 0V60M220 0V60" stroke="#56628f"/><circle cx="110" cy="170" r="42" fill="#d8d6e6"/><rect x="74" y="190" width="72" height="70" rx="20" fill="#e8e6f0"/><path d="M0 260 Q150 160 300 240 V260Z" fill="#2d63c8"/></svg></div>
+      <div class="frame"><svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3f84e8"/><stop offset="1" stop-color="#9fc6f4"/></linearGradient></defs><rect width="300" height="400" fill="url(#sky)"/><rect x="120" y="60" width="20" height="240" fill="#8a8f9c"/><path d="M150 40 Q170 100 168 230 H132 Q130 100 150 40Z" fill="#f0efe9"/><rect x="172" y="120" width="24" height="120" fill="#c57a4a"/><rect x="100" y="110" width="16" height="170" fill="#b0a9a0"/><path d="M0 300 Q80 250 160 290 T300 280 V400 H0Z" fill="#f4f1ef"/><path d="M0 340 Q100 300 200 340 T300 330 V400 H0Z" fill="#e8b98a" opacity=".85"/></svg>
+        <button class="playb" type="button" aria-label="Play film"><svg viewBox="0 0 14 14"><path d="M0 0l14 7-14 7z"/></svg></button></div>
+      <div class="arrows"><button type="button" aria-label="Previous">&lsaquo;</button><button type="button" aria-label="Next">&rsaquo;</button></div>
+    </div>
+    <div class="prose">
+      <h2 class="label">Look our gallery</h2>
+      <p>A line of placeholder copy introduces the gallery. It explains, in a sentence or two, what the visitor is about to see and why it matters.</p>
+      <p>A second paragraph gives a little more detail about the collection, the people behind it and how the images were made. Keep it short and calm.</p>
+      <p>A third, shorter paragraph closes the section and points toward the next step.</p>
+    </div>
+  </div>
+</section>
+
+<section class="think">
+  <div class="stars" style="opacity:.35"></div>
+  <div class="tri" style="left:-18px;top:46%;width:34px;height:34px"><svg viewBox="0 0 100 100"><path d="M5 10h90L50 92Z" fill="url(#g)" stroke="none"/></svg></div>
+  <div class="wrap think__grid">
+    <div class="prose">
+      <h2 class="label">What we think ?</h2>
+      <p>Placeholder copy sets out the point of view of the team in a few honest lines, without claims that need proof.</p>
+      <p>A second paragraph expands on the idea and gives the reader one concrete example to hold on to.</p>
+      <p>A third paragraph wraps up and invites the visitor to keep going.</p>
+    </div>
+    <div class="box">
+      <h3>Out<br>of the<br>box</h3>
+      <svg viewBox="0 0 300 260" aria-hidden="true"><defs><linearGradient id="hm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#b8b2cf"/></linearGradient></defs><circle cx="130" cy="130" r="112" fill="url(#hm)"/><path d="M140 100 Q230 90 252 150 Q240 200 160 190Z" fill="#6f7f9c" opacity=".85"/><path d="M150 115 Q215 110 232 150" stroke="#dbe3f5" stroke-width="4" fill="none" opacity=".7"/><path d="M190 200 Q250 215 290 235" stroke="#2f3a27" stroke-width="16" fill="none" stroke-linecap="round"/></svg>
+    </div>
+  </div>
+</section>
+
+<section class="stats" aria-label="Numbers">
+  <div class="wrap">
+    <div><b>7890</b><span>Coffee cups</span></div>
+    <div><b>1M</b><span>Subscribers</span></div>
+    <div><b>1509</b><span>Customers</span></div>
+    <div><b>5972</b><span>Purchases</span></div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="tri" style="left:-14px;top:150px;width:110px;height:110px"><svg viewBox="0 0 100 100"><path d="M8 10L92 50 8 90Z"/></svg></div>
+  <div class="tri" style="right:-14px;top:170px;width:90px;height:90px"><svg viewBox="0 0 100 100"><path d="M92 10L8 50 92 90Z"/></svg></div>
+  <div class="card">
+    <h2>Contact</h2>
+    <div class="card__grid">
+      <div>
+        <h3>Demo Gallery</h3>
+        <address>311 Harbor Street, San Francisco,<br>CA 94321<br><br>555-0142-939<br>hello@violetorbit.example</address>
+      </div>
+      <div class="building" role="img" aria-label="Office building"><svg viewBox="0 0 300 200" preserveAspectRatio="xMidYMid slice"><rect width="300" height="200" fill="#1a2b55"/><rect y="150" width="300" height="50" fill="#2a2f3c"/><rect x="60" y="30" width="110" height="130" fill="#7aa2c8"/><rect x="140" y="20" width="100" height="140" fill="#b25a3a"/><path d="M60 50H240M60 80H240M60 110H240M60 138H240" stroke="#1a2b55" stroke-width="3" opacity=".55"/><path d="M0 172L300 160" stroke="#f3c979" stroke-width="3" opacity=".8"/></svg></div>
+    </div>
+  </div>
+  <div class="dots" aria-hidden="true"></div>
+</section>
+</body>
+</html>

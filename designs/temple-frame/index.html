@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Temple Frame</title>
+<link rel="stylesheet" href="../_shared/fonts.css">
+<style>
+:root{--ink:#f4f6f7;--soft:#c2cacf;--cyan:#20c8ee;--sans:'Montserrat',system-ui,sans-serif;--ease:cubic-bezier(.16,1,.3,1)}
+*{box-sizing:border-box;margin:0}
+body{min-height:100vh;display:grid;place-items:center;padding:clamp(14px,4vw,60px);font:400 .875rem/1.6 var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased;
+  background:radial-gradient(60% 50% at 25% 15%,#c5c7c9 0%,transparent 70%),radial-gradient(60% 50% at 80% 10%,#9fa4a8 0%,transparent 70%),linear-gradient(180deg,#7b7f84 0%,#5a5e63 45%,#6d7074 70%,#3f4144 100%)}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--cyan);color:#04202a}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+
+.screen{background:#1a2230;position:relative;width:min(1100px,100%);aspect-ratio:16/9;min-height:520px;border-radius:14px;border:4px solid #0b0d10;overflow:hidden;isolation:isolate;box-shadow:0 30px 70px rgba(0,0,0,.45)}
+.scene{position:absolute;inset:0;z-index:-2;width:100%;height:100%}
+.shade{position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(6,10,14,.55) 0%,transparent 55%),linear-gradient(0deg,rgba(6,10,14,.55) 0%,transparent 30%)}
+
+.top{position:absolute;left:clamp(20px,4vw,44px);right:clamp(20px,4vw,44px);top:clamp(16px,3vw,28px);display:flex;align-items:center;justify-content:space-between;font:600 .75rem var(--sans);letter-spacing:.08em;text-transform:uppercase}
+.top ul{list-style:none;padding:0;display:flex;gap:clamp(18px,4vw,48px);margin-left:auto}
+.top a{padding:4px 0;border-bottom:1px solid transparent;transition:border-color .3s var(--ease)}
+.top a:hover{border-color:var(--cyan)}
+.burger{margin-left:clamp(18px,3vw,36px);display:grid;gap:4px;width:16px}
+.burger i{height:2px;background:var(--ink);display:block}
+.burger i:last-child{width:10px}
+
+.copy{position:absolute;left:clamp(20px,4vw,44px);top:30%}
+h1{font:800 clamp(1.75rem,4.4vw,3rem)/1.05 var(--sans);text-transform:uppercase;letter-spacing:.04em}
+.watch{display:flex;align-items:center;gap:14px;margin-top:clamp(20px,3vw,34px);font:600 .75rem var(--sans);letter-spacing:.1em;text-transform:uppercase;background:none;border:0;color:var(--ink);cursor:pointer;padding:0}
+.watch i{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--ink);display:grid;place-items:center;transition:background-color .3s,border-color .3s,color .3s}
+.watch i::before{content:"";border-left:10px solid currentColor;border-top:6px solid transparent;border-bottom:6px solid transparent;margin-left:2px}
+.watch:hover i{background:var(--cyan);border-color:var(--cyan);color:#04202a}
+.know{display:inline-block;margin-top:clamp(18px,3vw,30px);background:var(--cyan);color:#04202a;font:700 .75rem var(--sans);letter-spacing:.1em;text-transform:uppercase;padding:9px 18px;border-radius:3px;transition:transform .3s var(--ease),background-color .3s}
+.know:hover{transform:translateY(-2px);background:#57dcf7}
+
+.info{position:absolute;right:clamp(40px,7vw,80px);bottom:clamp(58px,9vw,86px);width:min(230px,30%);padding:14px 16px;background:rgba(40,46,52,.72);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px);border-radius:3px}
+.info b{display:block;font:700 .75rem var(--sans);margin-bottom:6px;letter-spacing:.06em}
+.info p{font-size:.75rem;line-height:1.55;color:var(--soft)}
+.slider{position:absolute;right:clamp(16px,3vw,30px);top:38%;bottom:16%;display:flex;flex-direction:column;align-items:center;justify-content:space-between;font:600 .75rem var(--sans)}
+.slider::before{content:"";position:absolute;top:22px;bottom:22px;width:2px;background:rgba(255,255,255,.35)}
+.slider::after{content:"";position:absolute;top:22px;height:34%;width:2px;background:var(--ink)}
+.stats{position:absolute;left:30%;right:26%;bottom:clamp(14px,3vw,26px);display:flex;justify-content:space-between;gap:10px;text-align:center}
+.stats b{display:block;font:700 clamp(.9375rem,1.8vw,1.25rem)/1.2 var(--sans)}
+.stats span{font-size:.75rem;color:var(--soft)}
+.socials{position:absolute;left:clamp(20px,4vw,44px);bottom:clamp(14px,3vw,26px);display:flex;gap:26px;font:600 .75rem var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--soft)}
+
+@media (max-width:760px){.screen{aspect-ratio:auto;min-height:620px}.top ul{display:none}.info{position:static;width:auto;margin:0}.info-wrap{position:absolute;left:20px;right:20px;bottom:70px}.stats{left:20px;right:20px}.slider{display:none}.copy{top:22%}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<main class="screen">
+  <svg class="scene" viewBox="0 0 1000 562" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1c2d3f"/><stop offset=".45" stop-color="#46505c"/><stop offset=".68" stop-color="#b79784"/><stop offset="1" stop-color="#6d5b52"/></linearGradient>
+      <linearGradient id="plaza" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6c6a66"/><stop offset="1" stop-color="#3c3b39"/></linearGradient>
+    </defs>
+    <rect width="1000" height="562" fill="url(#sky)"/>
+    <g fill="#1b2a3a" opacity=".85"><ellipse cx="200" cy="90" rx="260" ry="60"/><ellipse cx="620" cy="60" rx="300" ry="50"/><ellipse cx="860" cy="150" rx="220" ry="46"/></g>
+    <g fill="#8a95a3" opacity=".35"><ellipse cx="420" cy="180" rx="220" ry="30"/><ellipse cx="760" cy="230" rx="180" ry="24"/></g>
+    <rect x="720" y="110" width="110" height="200" fill="#9ab0bc" opacity=".55"/>
+    <path d="M0 300h1000v262H0Z" fill="url(#plaza)"/>
+    <path d="M0 300Q60 240 140 262 160 250 210 278H0Z" fill="#1a1d18"/>
+    <path d="M230 255Q500 195 790 255L770 290H250Z" fill="#14161a"/>
+    <path d="M300 255Q500 205 720 255" stroke="#2a2c32" stroke-width="6" fill="none"/>
+    <path d="M370 215Q500 160 640 215L625 250H385Z" fill="#191b20"/>
+    <path d="M500 168V140" stroke="#191b20" stroke-width="8"/>
+    <rect x="300" y="290" width="400" height="52" fill="#d8b9a8"/>
+    <g fill="#f3e4d8" stroke="#6d4d44" stroke-width="2"><circle cx="350" cy="316" r="17"/><circle cx="430" cy="316" r="17"/><circle cx="510" cy="316" r="17"/><circle cx="590" cy="316" r="17"/><circle cx="660" cy="316" r="17"/></g>
+    <rect x="300" y="342" width="400" height="10" fill="#26211f"/>
+    <path d="M770 295h230v50H780Z" fill="#14161a"/>
+    <path d="M0 562L330 380h340L1000 562Z" fill="#494744" opacity=".6"/>
+    <path d="M60 562L380 380M220 562L440 380M400 562L500 380M600 562L560 380M780 562L620 380M940 562L680 380" stroke="#2f2e2c" stroke-width="2" opacity=".5"/>
+    <rect x="490" y="400" width="12" height="36" rx="5" fill="#eceff1"/><circle cx="496" cy="394" r="6" fill="#d9bca6"/>
+  </svg>
+  <div class="shade"></div>
+  <header class="top"><a href="#" style="font-weight:800;letter-spacing:.14em">Japan.</a><ul><li><a href="#">Home</a></li><li><a href="#">About</a></li><li><a href="#">Gallery</a></li><li><a href="#">Features</a></li></ul><span class="burger" aria-hidden="true"><i></i><i></i></span></header>
+  <div class="copy">
+    <h1>Endless<br>Discovery</h1>
+    <button class="watch" type="button"><i></i>Watch movie</button>
+    <a class="know" href="#">Know more</a>
+  </div>
+  <div class="slider" aria-hidden="true"><span>01</span><span>04</span></div>
+  <div class="info-wrap"><aside class="info"><b>JAPAN</b><p>Japan is an island country in East Asia. It is bordered by the Sea of Japan to the west and, to the east, the open Pacific.</p></aside></div>
+  <div class="stats"><div><b>2,000</b><span>Temples</span></div><div><b>6,850</b><span>Islands</span></div><div><b>362</b><span>Rivers</span></div></div>
+  <div class="socials"><a href="#">Instagram</a><a href="#">Youtube</a></div>
+</main>
+</body>
+</html>

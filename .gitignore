@@ -12,3 +12,7 @@ node_modules/
 
 # Platform binary that Impeccable downloads on demand
 .claude/skills/impeccable/scripts/bin/
+
+# Raw reference screenshots stay local (other people's work)
+inbox/*
+!inbox/README.md

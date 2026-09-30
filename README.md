@@ -6,12 +6,12 @@ A personal library of web design references. I collect designs I like, describe 
 
 ![A design's detail view with the brief and hand-off buttons](docs/screenshot-detail.png)
 
-> The six designs in the repo are placeholders I generated to demo the layout. They have no real source. Real entries come from my own Dribbble collection.
+> Each design is an original mock page I built from a reference screenshot, with made-up content. The pattern and the feeling are the point, not the copy. The raw reference screenshots stay on my computer.
 
 ## What it does
 
 - **Browse** a grid of designs with category filters, live search and a saved list.
-- **Open** a design to see its screenshots, palette, typography, layout and style notes.
+- **Open** a design to see its screenshots, palette, typography, layout and style notes, or switch to the live mock page and scroll it.
 - **Hand off** a design to another Claude session:
   - *Copy brief* copies a structured markdown brief. It lists the image file paths and tells the session to look at them first.
   - *Copy image* puts the current screenshot on the clipboard, ready to paste into a chat.
@@ -33,9 +33,8 @@ It opens <http://localhost:4173>. Use `PORT=4180 node server.mjs` if that port i
 
 ## Add a design
 
-1. Put the screenshots in `images/<design-id>/`.
-2. Copy an entry in `data/designs.js` and fill it in.
-3. Reload the page.
+1. Drop the reference screenshot in `inbox/` and ask Claude for a new batch. It builds the mock page in `designs/<design-id>/`, screenshots it into `images/<design-id>/`, and writes the entry.
+2. Or do it by hand: add the page and images, copy an entry in `data/designs.js`, and reload.
 
 An entry looks like this:
 
@@ -47,6 +46,7 @@ An entry looks like this:
   category: "Data-as-Texture",
   descriptor: "dark terminal x finance",
   summary: "One sentence on the feeling.",
+  page: "designs/night-ledger/index.html",   // optional live mock page
   images: [{ file: "images/night-ledger/cover.png", caption: "Hero" }],
   tags: ["near-black ground", "mint accent"],
   colors: [{ role: "background", hex: "#0f1412" }],
@@ -58,7 +58,6 @@ An entry looks like this:
 }
 ```
 
-Remove `placeholder: true` from any entry that is a real design.
 
 ## Project layout
 
@@ -66,8 +65,10 @@ Remove `placeholder: true` from any entry that is a real design.
 | --- | --- |
 | `index.html`, `styles.css`, `app.js` | The app |
 | `data/designs.js` | The library |
-| `images/` | Screenshots, one folder per design |
-| `fonts/` | Self-hosted Newsreader, IBM Plex Mono and Schibsted Grotesk |
+| `designs/` | The original mock pages, one folder per design |
+| `images/` | Preview screenshots, one folder per design |
+| `inbox/` | Drop zone for reference screenshots (kept local, not committed) |
+| `fonts/` | Self-hosted fonts for the app and the mock pages |
 | `server.mjs`, `start.bat` | Optional local server for image copy and zip |
 | `PRODUCT.md` | Who the app is for and what it must do |
 | `.claude/` | [Impeccable](https://github.com/pbakaus/impeccable) design skill for Claude Code |

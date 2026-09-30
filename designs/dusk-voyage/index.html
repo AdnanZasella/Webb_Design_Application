@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dusk Voyage</title>
+<style>
+@font-face{font-family:'Barlow';font-weight:400;font-display:swap;src:url('../../fonts/Barlow-400.woff2') format('woff2');}
+@font-face{font-family:'Barlow';font-weight:500;font-display:swap;src:url('../../fonts/Barlow-500.woff2') format('woff2');}
+@font-face{font-family:'Barlow Condensed';font-weight:500;font-display:swap;src:url('../../fonts/BarlowCondensed-500.woff2') format('woff2');}
+@font-face{font-family:'Barlow Condensed';font-weight:700;font-display:swap;src:url('../../fonts/BarlowCondensed-700.woff2') format('woff2');}
+
+:root{
+  --bg:#141b25; --bg-deep:#0d131b; --ink:#f3efe9; --ink-soft:#a9b0ba;
+  --rust:#c4532b; --rust-hot:#e0703f;
+  --display:'Barlow Condensed','Arial Narrow',sans-serif; --body:'Barlow',system-ui,sans-serif;
+  --wrap:min(1120px, calc(100% - 48px));
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 1rem/1.55 var(--body);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--rust);color:#fff}
+:focus-visible{outline:2px solid var(--rust-hot);outline-offset:3px}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:min(100vh,860px);overflow:hidden;isolation:isolate}
+.hero__sky{position:absolute;inset:0;z-index:-4;
+  background:
+    radial-gradient(120% 60% at 50% 38%, #6b5a66 0%, transparent 60%),
+    linear-gradient(180deg,#2a2b3a 0%,#4b4358 34%,#6a5a64 48%,#2d3340 62%,#1a212c 80%,var(--bg) 100%)}
+.hero__cloud{position:absolute;inset:0 0 40% 0;z-index:-3;opacity:.55;
+  background:
+    radial-gradient(40% 22% at 20% 18%,#8b7c86 0%,transparent 70%),
+    radial-gradient(45% 18% at 75% 12%,#7a6e7c 0%,transparent 70%),
+    radial-gradient(35% 14% at 50% 30%,#9a8a8c 0%,transparent 70%)}
+.hero__hills{position:absolute;left:0;right:0;top:42%;height:22%;z-index:-2}
+.hero__water{position:absolute;left:0;right:0;top:56%;bottom:0;z-index:-2;
+  background:linear-gradient(180deg,#3a4150 0%,#232a36 45%,var(--bg) 100%)}
+.hero__gate{position:absolute;left:50%;top:7%;width:min(62vw,720px);transform:translateX(-50%);z-index:-1}
+.hero__fade{position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,rgba(20,27,37,.25) 0%,transparent 30%,rgba(20,27,37,.15) 55%,var(--bg) 96%)}
+
+.nav{width:var(--wrap);margin:0 auto;padding:22px 0 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(243,239,233,.22);position:relative;z-index:2}
+.logo{display:flex;align-items:center;gap:8px;font:700 1rem var(--display);letter-spacing:.08em;text-transform:uppercase}
+.logo i{width:10px;height:10px;border-radius:50%;background:var(--rust)}
+.nav ul{list-style:none;padding:0;display:flex;gap:28px;font:500 .8125rem var(--body);letter-spacing:.14em;text-transform:uppercase}
+.nav a{padding:6px 0;border-bottom:1px solid transparent;transition:border-color .3s cubic-bezier(.16,1,.3,1)}
+.nav a:hover,.nav a[aria-current]{border-color:var(--rust-hot)}
+.nav svg{width:16px;height:16px;stroke:var(--ink);fill:none;stroke-width:1.5}
+
+.hero__body{width:var(--wrap);margin:0 auto;position:relative;z-index:2;padding-top:clamp(120px,22vh,200px)}
+h1{font:700 clamp(4rem,11vw,8.5rem)/.88 var(--display);text-transform:uppercase;letter-spacing:-.01em;text-shadow:0 2px 30px rgba(10,14,20,.45)}
+.counter{position:absolute;right:0;top:clamp(130px,24vh,210px);display:flex;flex-direction:column;align-items:flex-end;gap:10px;font:500 .8125rem var(--body);color:var(--ink-soft);letter-spacing:.1em}
+.counter b{font:700 1.75rem/1 var(--display);color:var(--ink);display:flex;align-items:center;gap:14px}
+.counter b::after{content:"";width:64px;height:1px;background:var(--ink)}
+.teasers{margin-top:clamp(60px,14vh,150px);display:grid;grid-template-columns:repeat(3,1fr);gap:40px;padding:0 0 26px;position:relative}
+.teasers::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:rgba(243,239,233,.25)}
+.teasers::before{content:"";position:absolute;left:0;width:26%;bottom:0;height:2px;background:var(--rust);z-index:1}
+.teaser p{font-size:.8125rem;line-height:1.7;color:var(--ink-soft);max-width:30ch;margin-bottom:10px}
+.more{font:500 .8125rem var(--body);letter-spacing:.14em;text-transform:uppercase}
+.more::after{content:" \2192";color:var(--rust-hot);transition:margin .3s cubic-bezier(.16,1,.3,1)}
+.more:hover::after{margin-left:6px}
+
+/* ---------- tours ---------- */
+.tours{width:var(--wrap);margin:0 auto;padding:clamp(70px,12vw,130px) 0}
+.tours__head{text-align:center;margin-bottom:40px}
+.tours__head small{display:block;font:400 .8125rem var(--body);letter-spacing:.04em;color:var(--ink-soft);margin-bottom:18px}
+.tours__head h2{font:700 1.125rem var(--display);letter-spacing:.14em;text-transform:uppercase}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.card{position:relative;aspect-ratio:3/4.3;overflow:hidden;display:block}
+.card svg{position:absolute;inset:0;width:100%;height:100%;transition:transform .9s cubic-bezier(.16,1,.3,1)}
+.card:hover svg{transform:scale(1.05)}
+.card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(13,19,27,.92) 100%)}
+.card__text{position:absolute;left:0;right:0;bottom:22px;text-align:center;z-index:1}
+.card__text b{display:block;font:700 1.125rem var(--display);letter-spacing:.1em;text-transform:uppercase}
+.card__text span{font-size:.8125rem;color:var(--ink-soft)}
+.pager{display:flex;justify-content:center;gap:40px;margin-top:26px}
+.pager i{display:block;width:110px;height:1px;background:rgba(243,239,233,.35)}
+
+/* ---------- night ---------- */
+.night{position:relative;min-height:clamp(560px,80vh,760px);overflow:hidden;isolation:isolate;display:flex;align-items:flex-start}
+.night__sky{position:absolute;inset:0;z-index:-3;background:
+  linear-gradient(180deg,var(--bg) 0%,#10182a 14%,#1c1f44 40%,#3b2a55 62%,#0d131b 100%)}
+.night__stars{position:absolute;inset:0;z-index:-2;opacity:.9;
+  background-image:
+    radial-gradient(1.2px 1.2px at 12% 18%,#fff 50%,transparent 51%),
+    radial-gradient(1px 1px at 28% 36%,#fff 50%,transparent 51%),
+    radial-gradient(1.4px 1.4px at 44% 14%,#fff 50%,transparent 51%),
+    radial-gradient(1px 1px at 58% 30%,#fff 50%,transparent 51%),
+    radial-gradient(1.3px 1.3px at 71% 20%,#fff 50%,transparent 51%),
+    radial-gradient(1px 1px at 86% 40%,#fff 50%,transparent 51%),
+    radial-gradient(1px 1px at 93% 12%,#fff 50%,transparent 51%),
+    radial-gradient(1.2px 1.2px at 6% 52%,#fff 50%,transparent 51%),
+    radial-gradient(1px 1px at 38% 55%,#fff 50%,transparent 51%),
+    radial-gradient(1px 1px at 64% 48%,#fff 50%,transparent 51%);
+  background-size:520px 420px}
+.night__galaxy{position:absolute;left:-10%;right:-10%;top:10%;height:55%;z-index:-2;transform:rotate(-14deg);filter:blur(22px);opacity:.8;
+  background:linear-gradient(90deg,transparent 0%,#5a3d86 30%,#c9679d 52%,#7b5bb5 70%,transparent 100%)}
+.night__peaks{position:absolute;left:0;right:0;bottom:0;height:46%;z-index:-1;width:100%}
+.night__inner{width:var(--wrap);margin:0 auto;padding-top:clamp(60px,9vw,110px);position:relative;min-height:inherit}
+h2.big{font:700 clamp(2.75rem,6vw,4.5rem)/.95 var(--display);text-transform:uppercase;max-width:9ch}
+.play{display:inline-flex;align-items:center;gap:14px;margin-top:30px;font-size:.875rem;color:var(--ink);cursor:pointer;background:none;border:0;font-family:var(--body)}
+.play span{width:34px;height:34px;border:1px solid var(--ink);border-radius:50%;display:grid;place-items:center;transition:background-color .3s,border-color .3s}
+.play:hover span{background:var(--rust);border-color:var(--rust)}
+.play svg{width:10px;height:10px;fill:var(--ink);margin-left:2px}
+.note{font-size:.8125rem;color:var(--ink-soft);max-width:26ch;margin-top:clamp(40px,8vw,90px)}
+.thumbs{position:absolute;right:0;bottom:clamp(30px,7vw,80px);display:flex;gap:10px}
+.thumb{width:clamp(130px,19vw,210px);aspect-ratio:1.3;position:relative;overflow:hidden}
+.thumb svg{width:100%;height:100%;display:block}
+.thumb::after{content:"";position:absolute;left:50%;top:50%;width:22px;height:22px;transform:translate(-50%,-50%);border-radius:50%;background:rgba(243,239,233,.92)}
+.thumb::before{content:"";position:absolute;left:50%;top:50%;z-index:1;transform:translate(-35%,-50%);border-left:7px solid var(--bg);border-top:5px solid transparent;border-bottom:5px solid transparent}
+
+@media (max-width:820px){
+  .nav ul{display:none}
+  .counter{display:none}
+  .teasers{grid-template-columns:1fr;gap:22px}
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .thumbs{position:static;margin-top:30px}
+  .night__inner{padding-bottom:40px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero__sky"></div>
+  <div class="hero__cloud"></div>
+  <svg class="hero__hills" viewBox="0 0 1200 200" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 140 L120 90 L230 130 L360 70 L470 120 L640 80 L760 125 L900 60 L1030 115 L1200 85 V200 H0Z" fill="#242a37"/>
+    <path d="M0 170 L160 130 L300 160 L480 120 L650 158 L820 125 L1000 160 L1200 130 V200 H0Z" fill="#1a202b"/>
+  </svg>
+  <div class="hero__water"></div>
+  <svg class="hero__gate" viewBox="0 0 720 560" aria-hidden="true">
+    <defs><linearGradient id="wood" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7d3a27"/><stop offset="1" stop-color="#3a1e1a"/></linearGradient>
+    <linearGradient id="refl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a2a26" stop-opacity=".55"/><stop offset="1" stop-color="#4a2a26" stop-opacity="0"/></linearGradient></defs>
+    <path d="M40 70 Q360 20 680 70 L664 104 Q360 62 56 104Z" fill="url(#wood)"/>
+    <path d="M90 112 H630 V142 H90Z" fill="url(#wood)"/>
+    <rect x="316" y="100" width="88" height="56" fill="#5d2c22"/>
+    <rect x="150" y="104" width="44" height="340" fill="url(#wood)"/>
+    <rect x="526" y="104" width="44" height="340" fill="url(#wood)"/>
+    <rect x="156" y="200" width="408" height="26" fill="url(#wood)"/>
+    <rect x="150" y="444" width="44" height="116" fill="url(#refl)"/>
+    <rect x="526" y="444" width="44" height="116" fill="url(#refl)"/>
+  </svg>
+  <div class="hero__fade"></div>
+
+  <nav class="nav" aria-label="Main">
+    <a class="logo" href="#"><i></i>Dusk Voyage</a>
+    <ul>
+      <li><a href="#" aria-current="page">Home</a></li>
+      <li><a href="#tours">Tours</a></li>
+      <li><a href="#">Gallery</a></li>
+      <li><a href="#">Stories</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <svg viewBox="0 0 16 16" aria-label="Search"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4"/></svg>
+  </nav>
+
+  <div class="hero__body">
+    <h1>Visit<br>Kyoto</h1>
+    <div class="counter" aria-hidden="true"><span>01</span><span>02</span><b>03</b><span>04</span><span>05</span></div>
+    <div class="teasers">
+      <div class="teaser"><p>Temple lanes at first light, before the crowds find them.</p><a class="more" href="#">Read more</a></div>
+      <div class="teaser"><p>A slow train north, three villages and one very good noodle shop.</p><a class="more" href="#">Read more</a></div>
+      <div class="teaser"><p>Lantern festivals, small ferries and the quietest lake in the region.</p><a class="more" href="#">Read more</a></div>
+    </div>
+  </div>
+</header>
+
+<section class="tours" id="tours">
+  <div class="tours__head"><small>and bring home something unforgettable</small><h2>Popular tours</h2></div>
+  <div class="cards">
+    <a class="card" href="#"><svg viewBox="0 0 300 430" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs><linearGradient id="c1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6a5648"/><stop offset=".55" stop-color="#b98a5f"/><stop offset="1" stop-color="#3a2a26"/></linearGradient></defs>
+      <rect width="300" height="430" fill="url(#c1)"/>
+      <path d="M0 250 H300 V430 H0Z" fill="#2f2622"/>
+      <path d="M150 70 l-18 40 h36z M136 110 h28 l10 34 h-48z M124 144 h52 l14 46 h-80z" fill="#1d1614"/>
+      <rect x="138" y="190" width="24" height="70" fill="#1d1614"/>
+      <rect x="0" y="230" width="90" height="60" fill="#241b18"/><rect x="220" y="215" width="80" height="75" fill="#241b18"/>
+      <circle cx="150" cy="300" r="10" fill="#d9a066"/><rect x="144" y="310" width="12" height="34" fill="#d9a066" opacity=".85"/></svg>
+      <div class="card__text"><b>Old Town</b><span>five days, small group</span></div></a>
+    <a class="card" href="#"><svg viewBox="0 0 300 430" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs><linearGradient id="c2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3c4356"/><stop offset=".6" stop-color="#7d7682"/><stop offset="1" stop-color="#27222a"/></linearGradient></defs>
+      <rect width="300" height="430" fill="url(#c2)"/>
+      <path d="M40 220 H260 L240 190 H60Z M70 190 H230 L215 160 H85Z M100 160 H200 L190 132 H110Z M130 132 H170 L150 100Z" fill="#1c1a22"/>
+      <rect x="60" y="220" width="180" height="60" fill="#221f27"/>
+      <path d="M0 300 Q150 250 300 300 V430 H0Z" fill="#191720"/></svg>
+      <div class="card__text"><b>Castle Ridge</b><span>two days, all levels</span></div></a>
+    <a class="card" href="#"><svg viewBox="0 0 300 430" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs><linearGradient id="c3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8f7d8d"/><stop offset=".6" stop-color="#b4959c"/><stop offset="1" stop-color="#3a2b32"/></linearGradient></defs>
+      <rect width="300" height="430" fill="url(#c3)"/>
+      <circle cx="220" cy="120" r="70" fill="#f0c5cf" opacity=".9"/><circle cx="250" cy="190" r="56" fill="#e8adbd" opacity=".9"/><circle cx="190" cy="220" r="48" fill="#f4d0d8" opacity=".9"/>
+      <path d="M100 60 l-14 34 h28z M88 94 h24 l8 28 h-40z M80 122 h40 l10 34 h-60z M88 156 h24 v120 h-24z" fill="#8a2f2a"/>
+      <path d="M0 330 H300 V430 H0Z" fill="#33262b"/></svg>
+      <div class="card__text"><b>Blossom Line</b><span>seasonal, spring only</span></div></a>
+    <a class="card" href="#"><svg viewBox="0 0 300 430" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs><linearGradient id="c4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#585a66"/><stop offset=".7" stop-color="#3a3b46"/><stop offset="1" stop-color="#1a1b22"/></linearGradient></defs>
+      <rect width="300" height="430" fill="url(#c4)"/>
+      <rect x="0" y="120" width="70" height="200" fill="#2a2b34"/><rect x="250" y="100" width="50" height="230" fill="#2a2b34"/>
+      <path d="M70 190 Q150 100 230 190Z" fill="#c33a32"/><path d="M70 190 Q150 215 230 190" fill="none" stroke="#7d221e" stroke-width="3"/>
+      <circle cx="150" cy="232" r="14" fill="#1b1a20"/><path d="M122 330 L130 250 H170 L178 330Z" fill="#6b4a4f"/>
+      <path d="M0 340 H300 V430 H0Z" fill="#23232b"/><path d="M40 360 H260" stroke="#7a7d8e" stroke-width="1" opacity=".5"/></svg>
+      <div class="card__text"><b>Rain Walks</b><span>evening, tea included</span></div></a>
+  </div>
+  <div class="pager" aria-hidden="true"><i></i><i></i></div>
+</section>
+
+<section class="night">
+  <div class="night__sky"></div><div class="night__galaxy"></div><div class="night__stars"></div>
+  <svg class="night__peaks" viewBox="0 0 1200 300" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 210 L140 120 L220 170 L380 40 L520 180 L640 110 L780 190 L920 70 L1060 170 L1200 120 V300 H0Z" fill="#2b3350"/>
+    <path d="M0 250 L180 170 L300 220 L470 150 L620 230 L800 160 L980 235 L1200 180 V300 H0Z" fill="#141a2b"/>
+    <path d="M380 40 L350 82 L372 76 L392 90 L406 68Z M920 70 L895 108 L915 102 L935 114 L948 92Z" fill="#dfe6f2" opacity=".85"/>
+  </svg>
+  <div class="night__inner">
+    <h2 class="big">Travel and inspire your life</h2>
+    <button class="play" type="button"><span><svg viewBox="0 0 10 10"><path d="M0 0l10 5-10 5z"/></svg></span>Watch the film</button>
+    <p class="note">A short film from our last season: four countries, one small camera.</p>
+    <div class="thumbs" aria-hidden="true">
+      <div class="thumb"><svg viewBox="0 0 210 160" preserveAspectRatio="xMidYMid slice"><rect width="210" height="160" fill="#b56a46"/><path d="M0 90 L70 50 L120 80 L210 30 V160 H0Z" fill="#8c4a33"/><path d="M95 160 L110 90 L125 160Z" fill="#3a2a26"/></svg></div>
+      <div class="thumb"><svg viewBox="0 0 210 160" preserveAspectRatio="xMidYMid slice"><rect width="210" height="160" fill="#8ea6bf"/><path d="M0 120 L60 50 L100 90 L150 30 L210 110 V160 H0Z" fill="#dfe6ef"/><path d="M0 140 L80 100 L140 130 L210 100 V160 H0Z" fill="#6b7f96"/></svg></div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Local tooling state
+.claude/settings.local.json
+.impeccable/config.local.json
+node_modules/
+*.log
+
+# Platform binary that Impeccable downloads on demand
+.claude/skills/impeccable/scripts/bin/
